@@ -18,6 +18,7 @@
  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
  h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
  h1 ruby rt{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
+ .fig .ttl ruby rt{font-size:10px;font-weight:500;color:var(--muted)}
  .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:30px}
  .card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
  .card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -29,6 +30,14 @@
  .card li .sub{display:block;margin-top:2px;font-size:12.5px;color:var(--muted);font-weight:500}
  .card p{font-size:14px;color:var(--muted)}
  .ph{color:rgba(0, 74, 173, .5);font-style:italic}
+
+ .figs{display:flex;flex-direction:column;gap:18px;margin-bottom:18px}
+ .fig{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--shadow);overflow:hidden}
+ .imgwrap{border-radius:14px;overflow:hidden;background:#1c1c1c}
+ .imgwrap img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+ .fig figcaption{padding:14px 8px 6px;text-align:center}
+ .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
+ @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}}
 </style>
 </head>
 <body>
@@ -37,6 +46,12 @@
  <div class="kicker">解剖学・生理学・運動学 ／ 1.1 筋肉</div>
  <h1><ruby>上腕三頭筋<rt>じょうわんさんとうきん</rt></ruby><span class="badge">座学</span></h1>
  <div class="meta">No.6 ／ 起始・停止・働きを学ぶ</div>
+
+ <div class="figs">
+  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/上腕三頭筋長頭.png" alt="上腕三頭筋長頭"></div><figcaption><div class="ttl"><ruby>上腕三頭筋長頭<rt>じょうわんさんとうきんちょうとう</rt></ruby></div></figcaption></figure>
+  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/上腕三頭筋外側頭.png" alt="上腕三頭筋外側頭"></div><figcaption><div class="ttl"><ruby>上腕三頭筋外側頭<rt>じょうわんさんとうきんがいそくとう</rt></ruby></div></figcaption></figure>
+  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/上腕三頭筋内側頭.png" alt="上腕三頭筋内側頭"></div><figcaption><div class="ttl"><ruby>上腕三頭筋内側頭<rt>じょうわんさんとうきんないそくとう</rt></ruby></div></figcaption></figure>
+ </div>
 
  <div class="card"><h2>起始（Origin）</h2><p class="ph">ここに起始を記載します。</p></div>
  <div class="card"><h2>停止（Insertion）</h2><p class="ph">ここに停止を記載します。</p></div>
