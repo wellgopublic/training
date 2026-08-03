@@ -33,11 +33,15 @@
 
  /* ―― 画像の右に置く説明ボックス ―― */
  .fig.split .body{display:grid;grid-template-columns:minmax(0,1fr) 286px;gap:12px;align-items:stretch}
+ /* 画像は右の説明ボックスと同じ高さまで伸びる（黒い余白を出さないため） */
+ .fig.split .imgwrap{min-height:240px}
+ .fig.split .imgwrap img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
  .sidebox{background:var(--a-soft);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:9px}
  .sidebox .hd{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;line-height:1.2}
  .sidebox p{font-size:13.5px;line-height:1.85;color:var(--ink)}
  .sidebox .ex{font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1.5px dashed var(--line);padding-top:10px;margin-top:2px}
  .sidebox .ex b{color:var(--ink);font-weight:700}
+ .sidebox ruby{white-space:nowrap}  /* ふりがなの途中で改行させない */
  .sidebox ruby rt{font-size:9px;font-weight:500;color:var(--muted)}
 
  /* ―― 強調カード（起始・停止）―― */
@@ -104,7 +108,14 @@
   .pin.origin { --color: var(--origin); }
   .pin.insertion { --color: var(--insert); }
 
-  @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}.keys{grid-template-columns:1fr}.fig.split .body{grid-template-columns:1fr}.sidebox p br{display:none}}
+  @media(max-width:620px){
+   .imgwrap img{aspect-ratio:4/3}
+   .keys{grid-template-columns:1fr}
+   .fig.split .body{grid-template-columns:1fr}
+   .fig.split .imgwrap{min-height:0}
+   .fig.split .imgwrap img{position:static;height:auto;aspect-ratio:4/3}
+   .sidebox p br{display:none}
+  }
 </style>
 </head>
 <body>
@@ -129,15 +140,30 @@
    </div>
    <figcaption><span class="num">01</span><div class="ttl"><ruby>大胸筋上部<rt>だいきょうきんじょうぶ</rt></ruby></div></figcaption>
   </figure>
-  <figure class="fig">
-   <div class="imgwrap">
-    <img src="../../Picture/筋肉/大胸筋中部.png" alt="大胸筋中部">
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap">
+     <img src="../../Picture/筋肉/大胸筋中部.png" alt="大胸筋中部">
+    </div>
+    <aside class="sidebox">
+     <div class="hd">中部</div>
+     <p>大きい筋肉のため<ruby>鍛<rt>きた</rt></ruby>えることで<br>消費カロリーを増やしやすい。</p>
+     <p>男性の場合はモチベーション向上のためにも<ruby>鍛<rt>きた</rt></ruby>えておくと良い。</p>
+     <div class="ex"><b>種目</b>：Bench press, Pushup, Cable fly</div>
+    </aside>
    </div>
    <figcaption><span class="num">02</span><div class="ttl"><ruby>大胸筋中部<rt>だいきょうきんちゅうぶ</rt></ruby></div></figcaption>
   </figure>
-  <figure class="fig">
-   <div class="imgwrap">
-    <img src="../../Picture/筋肉/大胸筋下部.png" alt="大胸筋下部">
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap">
+     <img src="../../Picture/筋肉/大胸筋下部.png" alt="大胸筋下部">
+    </div>
+    <aside class="sidebox">
+     <div class="hd">下部</div>
+     <p>大胸筋の<ruby>輪郭<rt>りんかく</rt></ruby>がはっきりしたり<br><ruby>陰影<rt>いんえい</rt></ruby>ができるとデカくも見えやすい。</p>
+     <div class="ex"><b>種目</b>：Dip</div>
+    </aside>
    </div>
    <figcaption><span class="num">03</span><div class="ttl"><ruby>大胸筋下部<rt>だいきょうきんかぶ</rt></ruby></div></figcaption>
   </figure>
@@ -173,5 +199,6 @@
  </div>
  <div class="card"><h2>ポイント・関連知識</h2><p class="ph">代償動作・よくあるエラー・指導時の注意点などを記載します。</p></div>
 </div>
+<script src="../../assets/zoom.js" defer></script>
 </body>
 </html>
