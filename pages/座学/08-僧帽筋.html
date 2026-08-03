@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
- :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);--origin:#e5326b;--insert:#0e9bd6;}
  *{box-sizing:border-box;margin:0;padding:0}
  body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
  .wrap{max-width:760px;margin:0 auto}
@@ -19,7 +19,49 @@
  h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
  h1 ruby rt{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
  .fig .ttl ruby rt{font-size:10px;font-weight:500;color:var(--muted)}
- .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:30px}
+ .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:22px}
+
+ /* ―― 画像ギャラリー（1段1枚・横長・大きく）―― */
+ .figs{display:flex;flex-direction:column;gap:18px;margin-bottom:18px}
+ .fig{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--shadow);overflow:hidden}
+ .imgwrap{position:relative;border-radius:14px;overflow:hidden;background:#1c1c1c}
+ .imgwrap img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+ .fig figcaption{padding:14px 8px 6px;text-align:center}
+ .fig .num{font-family:"Outfit",sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:999px;padding:3px 13px;display:inline-block;margin-bottom:8px}
+ .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
+
+ /* ―― 画像の右に置く説明ボックス ―― */
+ .fig.split .body{display:grid;grid-template-columns:minmax(0,1fr) 286px;gap:12px;align-items:stretch}
+ /* 画像は右の説明ボックスと同じ高さまで伸びる（黒い余白を出さないため） */
+ .fig.split .imgwrap{min-height:240px}
+ .fig.split .imgwrap img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+ .sidebox{background:var(--a-soft);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+ /* 番号と筋肉の名前はこのボックスの見出しとして中に入れる（画像の下には置かない） */
+ .sidebox .hd{display:flex;align-items:center;gap:11px;margin-bottom:3px}
+ .sidebox .num{margin-bottom:0;flex:none}
+ .sidebox .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.3}
+ .sidebox p{font-size:13.5px;line-height:1.85;color:var(--ink)}
+ .sidebox .ex{font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1.5px dashed var(--line);padding-top:10px;margin-top:2px}
+ .sidebox .ex b{color:var(--ink);font-weight:700}
+ .sidebox ruby{white-space:nowrap}  /* ふりがなの途中で改行させない */
+ .sidebox ruby rt{font-size:9px;font-weight:500;color:var(--muted)}
+
+ /* ―― 強調カード（起始・停止）―― */
+ .keys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+ .kcard{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+ .kcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
+ .kcard.o::before{background:var(--origin)}.kcard.i::before{background:var(--insert)}
+ .kcard h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;display:flex;align-items:center;gap:9px;margin-bottom:12px}
+ .kcard h2 .tag{font-size:11px;font-weight:700;color:#fff;border-radius:999px;padding:3px 11px;font-family:"Outfit",sans-serif;letter-spacing:.08em}
+ .kcard.o h2 .tag{background:var(--origin)}.kcard.i h2 .tag{background:var(--insert)}
+ .kcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+ .kcard li{font-size:14px;font-weight:500;padding-left:18px;position:relative;color:var(--ink)}
+ .kcard li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%}
+ .kcard.o li::before{background:var(--origin)}.kcard.i li::before{background:var(--insert)}
+ .kcard li b{font-weight:700}
+ .kcard li small{display:block;font-size:11.5px;color:var(--muted);font-weight:500}
+
+ /* ―― 通常カード ―― */
  .card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
  .card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
  .card h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
@@ -28,16 +70,17 @@
  .card li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--a)}
  .card li b{font-weight:700}
  .card li .sub{display:block;margin-top:2px;font-size:12.5px;color:var(--muted);font-weight:500}
- .card p{font-size:14px;color:var(--muted)}
- .ph{color:rgba(0, 74, 173, .5);font-style:italic}
+ .card p{font-size:14px;color:var(--ink)}
+ .card .ph{color:rgba(0, 74, 173, .5);font-style:italic}
 
- .figs{display:flex;flex-direction:column;gap:18px;margin-bottom:18px}
- .fig{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--shadow);overflow:hidden}
- .imgwrap{border-radius:14px;overflow:hidden;background:#1c1c1c}
- .imgwrap img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
- .fig figcaption{padding:14px 8px 6px;text-align:center}
- .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
- @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}}
+ @media(max-width:620px){
+  .imgwrap img{aspect-ratio:4/3}
+  .keys{grid-template-columns:1fr}
+  .fig.split .body{grid-template-columns:1fr}
+  .fig.split .imgwrap{min-height:0}
+  .fig.split .imgwrap img{position:static;height:auto;aspect-ratio:4/3}
+  .sidebox p br{display:none}
+ }
 </style>
 </head>
 <body>
@@ -48,22 +91,69 @@
  <div class="meta">No.3 ／ 起始・停止・働きを学ぶ</div>
 
  <div class="figs">
-  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋上部.png" alt="僧帽筋上部"></div><figcaption><div class="ttl"><ruby>僧帽筋上部<rt>そうぼうきんじょうぶ</rt></ruby></div></figcaption></figure>
-  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋中部.png" alt="僧帽筋中部"></div><figcaption><div class="ttl"><ruby>僧帽筋中部<rt>そうぼうきんちゅうぶ</rt></ruby></div></figcaption></figure>
-  <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋下部.png" alt="僧帽筋下部"></div><figcaption><div class="ttl"><ruby>僧帽筋下部<rt>そうぼうきんかぶ</rt></ruby></div></figcaption></figure>
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋上部.png" alt="僧帽筋上部"></div>
+    <aside class="sidebox">
+     <div class="hd"><div class="ttl"><ruby>僧帽筋上部<rt>そうぼうきんじょうぶ</rt></ruby></div></div>
+     <p><ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の<ruby>挙上<rt>きょじょう</rt></ruby>と<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby>で働く。</p>
+     <div class="ex"><b>オススメ種目</b>：Shrug</div>
+    </aside>
+   </div>
+  </figure>
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋中部.png" alt="僧帽筋中部"></div>
+    <aside class="sidebox">
+     <div class="hd"><div class="ttl"><ruby>僧帽筋中部<rt>そうぼうきんちゅうぶ</rt></ruby></div></div>
+     <p><ruby>上半身<rt>じょうはんしん</rt></ruby>を<ruby>床<rt>ゆか</rt></ruby>と<ruby>並行<rt>へいこう</rt></ruby>にし、みぞおちめがけて引くことで僧帽筋に<ruby>効<rt>き</rt></ruby>く。</p>
+     <p>上半身を<ruby>斜<rt>なな</rt></ruby>めの<ruby>状態<rt>じょうたい</rt></ruby>でおへそめがけて動作を行うと<ruby>広背筋<rt>こうはいきん</rt></ruby>に効く。</p>
+     <div class="ex"><b>オススメ種目</b>：Bent over row</div>
+    </aside>
+   </div>
+  </figure>
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap"><img src="../../Picture/筋肉/僧帽筋下部.png" alt="僧帽筋下部"></div>
+    <aside class="sidebox">
+     <div class="hd"><div class="ttl"><ruby>僧帽筋下部<rt>そうぼうきんかぶ</rt></ruby></div></div>
+     <p><ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の<ruby>下制<rt>かせい</rt></ruby>と<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby>で働く。</p>
+     <div class="ex"><b>オススメ種目</b>：Lat pull down</div>
+    </aside>
+   </div>
+  </figure>
  </div>
 
- <div class="card"><h2>起始（Origin）</h2><p class="ph">ここに起始を記載します。</p></div>
- <div class="card"><h2>停止（Insertion）</h2><p class="ph">ここに停止を記載します。</p></div>
- <div class="card"><h2>働き（Action）</h2><p class="ph">ここに主な働きを記載します。</p></div>
- <div class="card"><h2>種目</h2>
+ <div class="keys">
+  <div class="kcard o">
+   <h2><span class="tag">ORIGIN</span>起始</h2>
+   <ul>
+    <li><b>上部</b>：<ruby>外後頭隆起<rt>がいこうとうりゅうき</rt></ruby></li>
+    <li><b>中部</b>：<ruby>胸椎<rt>きょうつい</rt></ruby>1〜6<ruby>棘突起<rt>きょくとっき</rt></ruby></li>
+    <li><b>下部</b>：<ruby>胸椎<rt>きょうつい</rt></ruby>7〜12<ruby>棘突起<rt>きょくとっき</rt></ruby></li>
+   </ul>
+  </div>
+  <div class="kcard i">
+   <h2><span class="tag">INSERTION</span>停止</h2>
+   <ul>
+    <li><b>上部</b>：<ruby>鎖骨<rt>さこつ</rt></ruby>外1/3</li>
+    <li><b>中部</b>：<ruby>肩甲棘<rt>けんこうきょく</rt></ruby>上・<ruby>肩峰<rt>けんぽう</rt></ruby><ruby>内側<rt>ないそく</rt></ruby></li>
+    <li><b>下部</b>：<ruby>肩甲棘<rt>けんこうきょく</rt></ruby></li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="card"><h2>働き（Action）</h2>
   <ul>
-   <li><b>シュラッグ</b><span class="sub">僧帽筋上部を集中して鍛える</span></li>
-   <li><b>アップライトロウ</b><span class="sub">僧帽筋上部・中部を鍛える</span></li>
-   <li><b>ベントオーバーロウ</b><span class="sub">僧帽筋中部・下部を鍛える</span></li>
+   <li><b>上部</b>：<ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の<ruby>挙上<rt>きょじょう</rt></ruby>・<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby></li>
+   <li><b>中部</b>：<ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の<ruby>内転<rt>ないてん</rt></ruby>・<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby></li>
+   <li><b>下部</b>：<ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の<ruby>下制<rt>かせい</rt></ruby>・<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby></li>
   </ul>
  </div>
- <div class="card"><h2>ポイント・関連知識</h2><p class="ph">代償動作・よくあるエラー・指導時の注意点などを記載します。</p></div>
+
+ <div class="card"><h2>種目のポイント</h2>
+  <p>上の3種目では<ruby>上方回旋<rt>じょうほうかいせん</rt></ruby>しないので、<b>Over head press（Military press）</b>を<ruby>追加<rt>ついか</rt></ruby>することでカバーできる。</p>
+ </div>
 </div>
 <script src="../../assets/zoom.js" defer></script>
 </body>
