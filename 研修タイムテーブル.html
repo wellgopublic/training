@@ -197,23 +197,23 @@
       padding-left: 30px
     }
 
+    /* the rail: fades in at the top and out at the bottom so it never
+       looks like it was cut off mid-way */
     .track::before {
       content: "";
       position: absolute;
-      left: 9px;
-      top: 8px;
-      bottom: 8px;
-      width: 3px;
-      border-radius: 3px;
+      left: 9.5px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(180deg,
+          rgba(0, 74, 173, 0) 0,
+          rgba(0, 74, 173, .26) 34px,
+          rgba(0, 74, 173, .26) calc(100% - 34px),
+          rgba(0, 74, 173, 0) 100%);
     }
 
-    .phase-a .track::before {
-      background: linear-gradient(var(--a), var(--a-soft))
-    }
-
-    .phase-b .track::before {
-      background: linear-gradient(var(--b), var(--b-soft))
-    }
 
     .week {
       position: relative;
@@ -240,25 +240,41 @@
     }
 
     .week::before {
-      /* timeline dot */
+      /* timeline dot — the white ring punches a gap in the rail so the
+         dot sits *on* the line instead of being crossed by it */
       content: "";
       position: absolute;
-      left: -26px;
+      left: -25px;
       top: 50%;
       transform: translateY(-50%);
-      width: 13px;
-      height: 13px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
-      background: #fff;
-      border: 3px solid;
+      background: var(--paper);
+      border: 2.5px solid var(--a);
+      box-shadow:
+        0 0 0 4px var(--paper),
+        0 0 0 5.5px rgba(0, 74, 173, .10);
+      transition: transform .28s cubic-bezier(.2, .7, .2, 1),
+        background .28s ease,
+        box-shadow .28s ease;
     }
 
-    .phase-a .week::before {
-      border-color: var(--a)
+    /* weeks you can open get a slightly livelier dot on hover */
+    .week.expandable:hover::before {
+      transform: translateY(-50%) scale(1.18);
+      box-shadow:
+        0 0 0 4px var(--paper),
+        0 0 0 7px rgba(0, 74, 173, .16);
     }
 
-    .phase-b .week::before {
-      border-color: var(--b)
+    /* opened week: dot fills in, so you can see where you are at a glance */
+    .week.open::before {
+      background: var(--a);
+      transform: translateY(-50%) scale(1.18);
+      box-shadow:
+        0 0 0 4px var(--paper),
+        0 0 0 7px rgba(0, 74, 173, .20);
     }
 
     .wk-num {
@@ -567,45 +583,6 @@
     }
 
     /* ---------- Footer note ---------- */
-    .note {
-      margin-top: 38px;
-      background: var(--card);
-      border: 1.5px solid var(--line);
-      border-radius: 18px;
-      padding: 20px 24px;
-      box-shadow: var(--shadow);
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .note b {
-      color: var(--ink);
-      font-family: "Zen Kaku Gothic New", sans-serif
-    }
-
-    .note ul {
-      list-style: none;
-      margin-top: 10px;
-      display: grid;
-      gap: 7px
-    }
-
-    .note li {
-      display: flex;
-      gap: 9px;
-      align-items: flex-start
-    }
-
-    .note li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--a);
-      margin-top: 8px;
-      flex: none
-    }
-
     @media (max-width:600px) {
       .week {
         grid-template-columns: 50px 1fr;
@@ -629,7 +606,6 @@
 
       .week,
       .stat,
-      .note,
       .phase .tag {
         box-shadow: none
       }
@@ -1083,16 +1059,6 @@
 
       </div>
     </section>
-
-    <div class="note">
-      <b>運用メモ</b>
-      <ul>
-        <li>各項目は「座学 → 小テスト」の順で実施。各小テストは <b>5問程度</b>・<b>すべて日本語</b>。</li>
-        <li>研修内容・小テストの中身は、<b>マニュアル原本に基づいて作成</b>します（現在ファイル待ち）。</li>
-        <li>Week 7「トレーニングの流れ」は内容追記後に詳細を反映します。</li>
-        <li>筋トレ5種目は負荷を平準化するため、2種目→2種目→1種目+総復習の3週構成にしています。</li>
-      </ul>
-    </div>
 
   </div>
 
