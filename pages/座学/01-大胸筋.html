@@ -31,6 +31,15 @@
  .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
  .fig .sub{font-size:13px;color:var(--muted);margin-top:3px}
 
+ /* ―― 画像の右に置く説明ボックス ―― */
+ .fig.split .body{display:grid;grid-template-columns:minmax(0,1fr) 286px;gap:12px;align-items:stretch}
+ .sidebox{background:var(--a-soft);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+ .sidebox .hd{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;line-height:1.2}
+ .sidebox p{font-size:13.5px;line-height:1.85;color:var(--ink)}
+ .sidebox .ex{font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1.5px dashed var(--line);padding-top:10px;margin-top:2px}
+ .sidebox .ex b{color:var(--ink);font-weight:700}
+ .sidebox ruby rt{font-size:9px;font-weight:500;color:var(--muted)}
+
  /* ―― 強調カード（起始・停止）―― */
  .keys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
  .kcard{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
@@ -95,7 +104,7 @@
   .pin.origin { --color: var(--origin); }
   .pin.insertion { --color: var(--insert); }
 
-  @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}.keys{grid-template-columns:1fr}}
+  @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}.keys{grid-template-columns:1fr}.fig.split .body{grid-template-columns:1fr}.sidebox p br{display:none}}
 </style>
 </head>
 <body>
@@ -106,9 +115,17 @@
  <div class="meta">No.1 ／ 起始・停止・働きを学ぶ</div>
 
  <div class="figs">
-  <figure class="fig">
-   <div class="imgwrap">
-    <img src="../../Picture/筋肉/大胸筋上部.png" alt="大胸筋上部">
+  <figure class="fig split">
+   <div class="body">
+    <div class="imgwrap">
+     <img src="../../Picture/筋肉/大胸筋上部.png" alt="大胸筋上部">
+    </div>
+    <aside class="sidebox">
+     <div class="hd">上部</div>
+     <p><ruby>肩関節<rt>けんかんせつ</rt></ruby><ruby>屈曲<rt>くっきょく</rt></ruby>動作で働く。</p>
+     <p>スーツをカッコよく着たい男性や<br>バストアップしたい女性にオススメ。</p>
+     <div class="ex"><b>種目</b>：Cable upper fly, Incline dumbbell press</div>
+    </aside>
    </div>
    <figcaption><span class="num">01</span><div class="ttl"><ruby>大胸筋上部<rt>だいきょうきんじょうぶ</rt></ruby></div></figcaption>
   </figure>

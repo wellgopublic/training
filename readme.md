@@ -45,7 +45,24 @@ manual の PDF ページをそのまま貼っているので、見出しも説�
 
 残すのはページ自体の見出しとナビゲーションだけ ——`.back` の戻るリンク・`.kicker`・`h1`・`.meta`・`.nav` のページ切りかえボタン。それ以外は画像だけを並べる。
 
-**例外:** `pages/座学/01〜13`（筋肉ページ）の `<figure class="fig">` は別。あちらの `<figcaption>` は筋肉の名前＋ふりがなで、ページの本文そのもの。消さない。
+**例外:** `pages/座学/01〜13`（筋肉ページ）の `<figure class="fig">` は別。あちらの画像は manual の PDF ページではなく 3D 解剖ソフトの画面で、文字が入っていない。だから次の2つは付けてよい（消さない）。
+
+- `<figcaption>`：筋肉の名前＋ふりがな。ページの本文そのもの。
+- `.sidebox`：画像の右に置く説明ボックス。`<figure class="fig split">` にして中を `.body` でくくると2カラムになる。中身は manual に書いてある働き・オススメの人・種目をそのまま写す。
+
+```html
+<figure class="fig split">
+ <div class="body">
+  <div class="imgwrap"><img src="../../Picture/筋肉/大胸筋上部.png" alt="大胸筋上部"></div>
+  <aside class="sidebox">
+   <div class="hd">上部</div>
+   <p>…働き…</p>
+   <div class="ex"><b>種目</b>：…</div>
+  </aside>
+ </div>
+ <figcaption>…</figcaption>
+</figure>
+```
 
 ### 2. 画像は必ずカテゴリのフォルダに入れる
 
