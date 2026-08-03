@@ -502,6 +502,29 @@
       text-decoration: none;
     }
 
+    /* まだページを作っていない項目 */
+    .m.soon {
+      background: transparent;
+      border: 1.5px dashed var(--line);
+      color: var(--muted);
+    }
+
+    .m.soon:hover {
+      background: transparent;
+      transform: none;
+    }
+
+    .m.soon i {
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--muted);
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      padding: 1px 8px;
+    }
+
     /* hover pop-over: 座学 / 小テスト */
     .m-pop {
       position: absolute;
@@ -661,14 +684,7 @@
               <div class="day">
                 <div class="day-head"><span class="day-n">DAY 1</span></div>
                 <div class="day-muscles">
-                  <span class="m"><b>1</b>大胸筋<span class="m-pop"><a class="pop-item" href="pages/座学/01-大胸筋.html"
-                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
-                        href="pages/小テスト/01-大胸筋.html"
-                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
-                  <span class="m"><b>2</b>大臀筋<span class="m-pop"><a class="pop-item" href="pages/座学/02-大臀筋.html"
-                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
-                        href="pages/小テスト/02-大臀筋.html"
-                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m soon">骨と関節の動き<i>準備中</i></span>
                 </div>
               </div>
 
@@ -705,6 +721,10 @@
                         onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
                         href="pages/小テスト/07-三角筋.html"
                         onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>1</b>大胸筋<span class="m-pop"><a class="pop-item" href="pages/座学/01-大胸筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/01-大胸筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
                 </div>
               </div>
 
@@ -718,6 +738,10 @@
                   <span class="m"><b>3</b>大腿四頭筋<span class="m-pop"><a class="pop-item" href="pages/座学/03-大腿四頭筋.html"
                         onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
                         href="pages/小テスト/03-大腿四頭筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>2</b>大臀筋<span class="m-pop"><a class="pop-item" href="pages/座学/02-大臀筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/02-大臀筋.html"
                         onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
                 </div>
               </div>
