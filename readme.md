@@ -48,22 +48,28 @@ manual の PDF ページをそのまま貼っているので、見出しも説�
 
 **例外:** `pages/座学/01〜13`（筋肉ページ）の `<figure class="fig">` は別。あちらの画像は manual の PDF ページではなく 3D 解剖ソフトの画面で、文字が入っていない。だから次の2つは付けてよい（消さない）。
 
-- `<figcaption>`：筋肉の名前＋ふりがな。ページの本文そのもの。
-- `.sidebox`：画像の右に置く説明ボックス。`<figure class="fig split">` にして中を `.body` でくくると2カラムになる。中身は manual に書いてある働き・オススメの人・種目をそのまま写す。
+- 番号＋筋肉の名前＋ふりがな。ページの本文そのもの。
+- `.sidebox`：画像の右に置く説明ボックス。中身は manual に書いてある働き・オススメの人・種目をそのまま写す。
+
+**説明ボックスがある図**（`<figure class="fig split">`）は、番号と筋肉の名前もボックスの中に入れる。画像の下に `<figcaption>` は置かない。
 
 ```html
 <figure class="fig split">
  <div class="body">
   <div class="imgwrap"><img src="../../Picture/筋肉/大胸筋上部.png" alt="大胸筋上部"></div>
   <aside class="sidebox">
-   <div class="hd">上部</div>
+   <div class="hd">
+    <span class="num">01</span>
+    <div class="ttl"><ruby>大胸筋上部<rt>だいきょうきんじょうぶ</rt></ruby></div>
+   </div>
    <p>…働き…</p>
    <div class="ex"><b>種目</b>：…</div>
   </aside>
  </div>
- <figcaption>…</figcaption>
 </figure>
 ```
+
+**説明ボックスが無い図**（`<figure class="fig">`）は、これまでどおり画像の下の `<figcaption>` に番号と名前を書く。
 
 ### 2. 画像をクリックすると拡大できるようにする
 
