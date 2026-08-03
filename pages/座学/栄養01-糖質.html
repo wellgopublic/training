@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖質 ｜座学</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
+ .wrap{max-width:760px;margin:0 auto}
+ .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--a-deep);text-decoration:none;margin-bottom:26px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow);transition:border-color .2s ease}
+ .back:hover{border-color:var(--a)}
+ .kicker{font-family:"Outfit",sans-serif;font-weight:700;letter-spacing:.28em;font-size:11px;color:var(--a-deep);text-transform:uppercase;margin-bottom:12px}
+ h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
+ h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
+ .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:30px}
+ .card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+ .card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+ .card h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .card p{font-size:14px;color:var(--muted)}
+ .ph{color:rgba(0, 74, 173, .5);font-style:italic}
+ .hero{margin-bottom:24px;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+ .hero img{display:block;width:100%;height:auto}
+ .vocab{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+ .vocab > h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-right:80px}
+ .vocab > h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .vocab .toggle{position:absolute;top:18px;right:18px;font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12px;color:var(--a-deep);background:var(--a-soft);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .2s ease,background .2s ease}
+ .vocab .toggle:hover{border-color:var(--a);background:#fff}
+ .vocab.is-collapsed .vbody{display:none}
+ .vocab h3{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:13px;color:var(--a-deep);margin:18px 0 8px;letter-spacing:.04em}
+ .vtable{width:100%;border-collapse:collapse;font-size:13px}
+ .vtable th,.vtable td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+ .vtable th{font-weight:700;background:var(--a-soft);color:var(--a-deep);font-size:12px;letter-spacing:.04em}
+ .vtable td.kj{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;color:var(--ink);white-space:nowrap}
+ .vtable td.kn{color:var(--muted);font-size:12px;white-space:nowrap}
+ .vtable td.th{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <a class="back" href="../../研修タイムテーブル.html">← 研修タイムテーブルに戻る</a>
+ <div class="kicker">栄養学 ／ 5. 10大栄養素</div>
+ <h1>糖質<span class="badge">座学</span></h1>
+ <div class="meta">No.1 ／ 役割・食品・指導ポイントを学ぶ</div>
+
+ <figure class="hero"><img src="../../Picture/10大栄養素/炭水化物.png" alt="炭水化物"></figure>
+
+ <section class="vocab is-collapsed" id="vocab">
+  <button type="button" class="toggle" aria-expanded="false" aria-controls="vocab-body" onclick="(function(b){var s=document.getElementById('vocab');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',!open);b.textContent=open?'見る':'隠す';})(this)">見る</button>
+  <h2>ことばリスト</h2>
+  <div class="vbody" id="vocab-body">
+
+  <h3>基本 ／ พื้นฐาน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">糖質</td><td class="kn">とうしつ</td><td class="th">คาร์โบไฮเดรต / น้ำตาล</td></tr>
+    <tr><td class="kj">炭水化物</td><td class="kn">たんすいかぶつ</td><td class="th">คาร์โบไฮเดรต</td></tr>
+    <tr><td class="kj">栄養素</td><td class="kn">えいようそ</td><td class="th">สารอาหาร</td></tr>
+    <tr><td class="kj">食品</td><td class="kn">しょくひん</td><td class="th">อาหาร / ผลิตภัณฑ์อาหาร</td></tr>
+    <tr><td class="kj">主に</td><td class="kn">おもに</td><td class="th">ส่วนใหญ่ / โดยหลัก</td></tr>
+    <tr><td class="kj">含まれる</td><td class="kn">ふくまれる</td><td class="th">มีอยู่ใน / ประกอบด้วย</td></tr>
+   </tbody>
+  </table>
+
+  <h3>体・臓器 ／ ร่างกาย・อวัยวะ</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">身体</td><td class="kn">からだ</td><td class="th">ร่างกาย</td></tr>
+    <tr><td class="kj">骨格筋</td><td class="kn">こっかくきん</td><td class="th">กล้ามเนื้อโครงร่าง</td></tr>
+    <tr><td class="kj">筋肉</td><td class="kn">きんにく</td><td class="th">กล้ามเนื้อ</td></tr>
+    <tr><td class="kj">胃</td><td class="kn">い</td><td class="th">กระเพาะอาหาร</td></tr>
+    <tr><td class="kj">小腸</td><td class="kn">しょうちょう</td><td class="th">ลำไส้เล็ก</td></tr>
+    <tr><td class="kj">肝臓</td><td class="kn">かんぞう</td><td class="th">ตับ</td></tr>
+   </tbody>
+  </table>
+
+  <h3>働き・代謝 ／ การทำงาน・เผาผลาญ</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">消化</td><td class="kn">しょうか</td><td class="th">การย่อยอาหาร</td></tr>
+    <tr><td class="kj">吸収</td><td class="kn">きゅうしゅう</td><td class="th">การดูดซึม</td></tr>
+    <tr><td class="kj">貯蔵</td><td class="kn">ちょぞう</td><td class="th">การเก็บสะสม</td></tr>
+    <tr><td class="kj">生成</td><td class="kn">せいせい</td><td class="th">การสร้าง / สังเคราะห์</td></tr>
+    <tr><td class="kj">促進</td><td class="kn">そくしん</td><td class="th">การส่งเสริม / เร่ง</td></tr>
+    <tr><td class="kj">摂る</td><td class="kn">とる</td><td class="th">รับประทาน / บริโภค</td></tr>
+    <tr><td class="kj">源</td><td class="kn">みなもと</td><td class="th">แหล่งกำเนิด / ที่มา</td></tr>
+    <tr><td class="kj">エネルギー</td><td class="kn">えねるぎー</td><td class="th">พลังงาน</td></tr>
+   </tbody>
+  </table>
+
+  <h3>GI・血糖 ／ ค่า GI・น้ำตาลในเลือด</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">血糖値</td><td class="kn">けっとうち</td><td class="th">ระดับน้ำตาลในเลือด</td></tr>
+    <tr><td class="kj">速さ</td><td class="kn">はやさ</td><td class="th">ความเร็ว</td></tr>
+    <tr><td class="kj">値</td><td class="kn">あたい</td><td class="th">ค่า / ตัวเลข</td></tr>
+    <tr><td class="kj">量</td><td class="kn">りょう</td><td class="th">ปริมาณ</td></tr>
+    <tr><td class="kj">急激</td><td class="kn">きゅうげき</td><td class="th">ฉับพลัน / รวดเร็ว</td></tr>
+    <tr><td class="kj">上昇</td><td class="kn">じょうしょう</td><td class="th">การเพิ่มขึ้น</td></tr>
+    <tr><td class="kj">低下</td><td class="kn">ていか</td><td class="th">การลดลง</td></tr>
+    <tr><td class="kj">負担</td><td class="kn">ふたん</td><td class="th">ภาระ (ต่อร่างกาย)</td></tr>
+    <tr><td class="kj">分泌</td><td class="kn">ぶんぴつ</td><td class="th">การหลั่ง (ฮอร์โมน)</td></tr>
+    <tr><td class="kj">抑制</td><td class="kn">よくせい</td><td class="th">การยับยั้ง / ควบคุม</td></tr>
+   </tbody>
+  </table>
+
+  <h3>健康・予防 ／ สุขภาพ・การป้องกัน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">中性脂肪</td><td class="kn">ちゅうせいしぼう</td><td class="th">ไตรกลีเซอไรด์</td></tr>
+    <tr><td class="kj">糖尿病</td><td class="kn">とうにょうびょう</td><td class="th">โรคเบาหวาน</td></tr>
+    <tr><td class="kj">予防</td><td class="kn">よぼう</td><td class="th">การป้องกัน</td></tr>
+    <tr><td class="kj">効果</td><td class="kn">こうか</td><td class="th">ผล / ประสิทธิภาพ</td></tr>
+    <tr><td class="kj">太る</td><td class="kn">ふとる</td><td class="th">อ้วน / น้ำหนักขึ้น</td></tr>
+   </tbody>
+  </table>
+
+  <h3>食品例 ／ ตัวอย่างอาหาร</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">芋類</td><td class="kn">いもるい</td><td class="th">มันชนิดต่าง ๆ (มันฝรั่ง มันเทศ ฯลฯ)</td></tr>
+    <tr><td class="kj">ご飯</td><td class="kn">ごはん</td><td class="th">ข้าวสวย</td></tr>
+    <tr><td class="kj">白米</td><td class="kn">はくまい</td><td class="th">ข้าวขาว</td></tr>
+    <tr><td class="kj">玄米</td><td class="kn">げんまい</td><td class="th">ข้าวกล้อง</td></tr>
+    <tr><td class="kj">餅</td><td class="kn">もち</td><td class="th">โมจิ / ข้าวเหนียวปั้น</td></tr>
+    <tr><td class="kj">砂糖</td><td class="kn">さとう</td><td class="th">น้ำตาล</td></tr>
+   </tbody>
+  </table>
+  </div>
+ </section>
+</div>
+</body>
+</html>

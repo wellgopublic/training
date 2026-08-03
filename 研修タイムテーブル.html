@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W研修タイムテーブル｜新人トレーナー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #ffffff;
+      --card: #FFFFFF;
+      --ink: #004aad;
+      --muted: rgba(0, 74, 173, .62);
+      --line: rgba(0, 74, 173, .16);
+      --a: #004aad;
+      /* Phase A — 基礎・知識 */
+      --a-soft: rgba(0, 74, 173, .08);
+      --a-deep: #004aad;
+      --b: #004aad;
+      /* Phase B — 実践 */
+      --b-soft: rgba(0, 74, 173, .08);
+      --b-deep: #004aad;
+      --shadow: 0 18px 40px -28px rgba(0, 74, 173, .28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(0, 74, 173, .05), transparent 38%),
+        radial-gradient(circle at 92% 96%, rgba(0, 74, 173, .05), transparent 40%),
+        var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 48px 22px 70px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      margin-bottom: 40px;
+      position: relative
+    }
+
+    .logo {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 28px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width:760px) {
+      .logo {
+        position: static;
+        display: block;
+        width: 96px;
+        height: 96px;
+        border-radius: 18px;
+        margin-bottom: 16px;
+      }
+    }
+
+    .kicker {
+      font-family: "Outfit", sans-serif;
+      font-weight: 700;
+      letter-spacing: .32em;
+      font-size: 12px;
+      color: var(--a-deep);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .kicker::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--a), transparent)
+    }
+
+    h1 {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 900;
+      font-size: clamp(34px, 6vw, 52px);
+      line-height: 1.04;
+      letter-spacing: .01em;
+    }
+
+    h1 .en {
+      display: block;
+      font-family: "Outfit", sans-serif;
+      font-weight: 700;
+      font-size: clamp(13px, 2.4vw, 16px);
+      letter-spacing: .18em;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat b {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--ink);
+      display: block;
+      line-height: 1;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: .04em
+    }
+
+    /* ---------- Phase header ---------- */
+    .phase {
+      margin-top: 46px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .phase .tag {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex: none;
+      box-shadow: var(--shadow);
+    }
+
+    .phase-a .tag {
+      background: linear-gradient(135deg, var(--a), var(--a-deep))
+    }
+
+    .phase-b .tag {
+      background: linear-gradient(135deg, var(--b), var(--b-deep))
+    }
+
+    .phase h2 {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 900;
+      font-size: 21px
+    }
+
+    .phase p {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    /* ---------- Timeline ---------- */
+    .track {
+      position: relative;
+      padding-left: 30px
+    }
+
+    .track::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      border-radius: 3px;
+    }
+
+    .phase-a .track::before {
+      background: linear-gradient(var(--a), var(--a-soft))
+    }
+
+    .phase-b .track::before {
+      background: linear-gradient(var(--b), var(--b-soft))
+    }
+
+    .week {
+      position: relative;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise .55s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .week::before {
+      /* timeline dot */
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid;
+    }
+
+    .phase-a .week::before {
+      border-color: var(--a)
+    }
+
+    .phase-b .week::before {
+      border-color: var(--b)
+    }
+
+    .wk-num {
+      text-align: center
+    }
+
+    .wk-num b {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      line-height: 1;
+      display: block
+    }
+
+    .wk-num span {
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: var(--muted);
+      font-family: "Outfit", sans-serif;
+      font-weight: 700
+    }
+
+    .phase-a .wk-num b {
+      color: var(--a-deep)
+    }
+
+    .phase-b .wk-num b {
+      color: var(--b-deep)
+    }
+
+    .wk-body .cat {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: .04em;
+    }
+
+    .phase-a .chip {
+      background: var(--a-soft);
+      color: var(--a-deep)
+    }
+
+    .phase-b .chip {
+      background: var(--b-soft);
+      color: var(--b-deep)
+    }
+
+    .wk-body .detail {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 5px;
+      line-height: 1.55
+    }
+
+    .quiz {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end
+    }
+
+    .quiz-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px dashed;
+    }
+
+    .phase-a .quiz-tag {
+      color: var(--a-deep);
+      border-color: var(--a);
+      background: var(--a-soft)
+    }
+
+    .phase-b .quiz-tag {
+      color: var(--b-deep);
+      border-color: var(--b);
+      background: var(--b-soft)
+    }
+
+    .quiz-tag::before {
+      content: "✓ 小テスト";
+      font-weight: 900;
+      font-size: 9px;
+      opacity: .7;
+      letter-spacing: .05em
+    }
+
+    .quiz-none {
+      font-size: 11px;
+      color: rgba(0, 74, 173, .5);
+      font-weight: 500
+    }
+
+    /* ---------- Expandable muscle panel ---------- */
+    .week.expandable {
+      cursor: pointer;
+      transition: border-color .25s ease;
+    }
+
+    .week.expandable:hover {
+      border-color: var(--a);
+    }
+
+    .toggle {
+      margin-left: auto;
+      color: var(--a);
+      font-size: 13px;
+      font-weight: 900;
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+      flex: none;
+    }
+
+    .week.open .toggle {
+      transform: rotate(180deg);
+    }
+
+    .muscle-panel {
+      grid-column: 1 / -1;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .45s cubic-bezier(.2, .7, .2, 1), opacity .35s ease, margin-top .35s ease;
+    }
+
+    .week.open .muscle-panel {
+      max-height: 820px;
+      opacity: 1;
+      margin-top: 8px;
+    }
+
+    .day-plan {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1.5px dashed var(--line);
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .day:not(:first-child) {
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+    }
+
+    .day-head {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .day-n {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      color: var(--a-deep);
+      letter-spacing: .05em;
+    }
+
+    .day-muscles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .m {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--a-soft);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: default;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .m:hover {
+      background: rgba(0, 74, 173, .14);
+      transform: translateY(-2px);
+    }
+
+    .m b {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--a-deep);
+      background: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    /* 座学ページへ直接ひらく項目（小テストなし） */
+    a.m {
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* hover pop-over: 座学 / 小テスト */
+    .m-pop {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-50%) translateY(5px);
+      background: var(--a-deep);
+      color: #fff;
+      border-radius: 11px;
+      padding: 9px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 6;
+      box-shadow: 0 12px 26px -10px rgba(0, 74, 173, .4);
+    }
+
+    .m-pop::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--a-deep);
+    }
+
+    /* invisible bridge across the gap so hover survives while moving to the buttons */
+    .m-pop::before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 14px;
+    }
+
+    .m:hover .m-pop {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .m-pop .pop-item {
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 4px 7px;
+      border-radius: 7px;
+      transition: background .15s ease;
+    }
+
+    .m-pop a.pop-item:hover {
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .m-pop .pop-item span {
+      font-family: "Outfit", sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      background: rgba(255, 255, 255, .18);
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    /* ---------- Footer note ---------- */
+    .note {
+      margin-top: 38px;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .note b {
+      color: var(--ink);
+      font-family: "Zen Kaku Gothic New", sans-serif
+    }
+
+    .note ul {
+      list-style: none;
+      margin-top: 10px;
+      display: grid;
+      gap: 7px
+    }
+
+    .note li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start
+    }
+
+    .note li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--a);
+      margin-top: 8px;
+      flex: none
+    }
+
+    @media (max-width:600px) {
+      .week {
+        grid-template-columns: 50px 1fr;
+        gap: 12px
+      }
+
+      .quiz {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 4px
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff
+      }
+
+      .week,
+      .stat,
+      .note,
+      .phase .tag {
+        box-shadow: none
+      }
+
+      .week {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        break-inside: avoid
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <img src="image-blue.png" alt="WELLGO" class="logo">
+      <div class="kicker">Personal Trainer 研修プログラム</div>
+      <h1>WELLGO研修プログラム
+        <span class="en">WELLGO TRAINER ONBOARDING SCHEDULE</span>
+      </h1>
+      <div class="stats">
+        <div class="stat"><b>3<span style="font-size:14px"> か月</span></b><span>研修期間</span></div>
+        <div class="stat"><b>12<span style="font-size:14px"> 週</span></b><span>全体ボリューム</span></div>
+        <div class="stat"><b>2<span style="font-size:14px"> 区分</span></b><span>A項目 / B項目</span></div>
+        <div class="stat"><b>5<span style="font-size:14px"> 問</span></b><span>各小テスト</span></div>
+      </div>
+    </header>
+
+    <!-- ============ PHASE A ============ -->
+    <section class="phase-a">
+      <div class="phase phase-a">
+        <div class="tag">A</div>
+        <div>
+          <h2>基礎・知識研修</h2>
+          <p>解剖学・生理学・運動学・ストレッチ・筋トレ5種目・トレーニングの流れ・栄養学／2か月</p>
+        </div>
+      </div>
+
+      <div class="track">
+
+        <div class="week expandable" style="animation-delay:.05s">
+          <div class="wk-num"><b>01</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">解剖学</div>
+            <div class="detail">筋肉の名前・起始・停止・働き</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>1</b>大胸筋<span class="m-pop"><a class="pop-item" href="pages/座学/01-大胸筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/01-大胸筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>2</b>大臀筋<span class="m-pop"><a class="pop-item" href="pages/座学/02-大臀筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/02-大臀筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 2</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>5</b>広背筋<span class="m-pop"><a class="pop-item" href="pages/座学/05-広背筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/05-広背筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>8</b>僧帽筋<span class="m-pop"><a class="pop-item" href="pages/座学/08-僧帽筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/08-僧帽筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>10</b>脊柱起立筋群<span class="m-pop"><a class="pop-item" href="pages/座学/10-脊柱起立筋群.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/10-脊柱起立筋群.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 3</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>6</b>上腕三頭筋<span class="m-pop"><a class="pop-item" href="pages/座学/06-上腕三頭筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/06-上腕三頭筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>9</b>上腕二頭筋<span class="m-pop"><a class="pop-item" href="pages/座学/09-上腕二頭筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/09-上腕二頭筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>7</b>三角筋<span class="m-pop"><a class="pop-item" href="pages/座学/07-三角筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/07-三角筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>4</b>ハムストリング<span class="m-pop"><a class="pop-item" href="pages/座学/04-ハムストリング.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/04-ハムストリング.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>3</b>大腿四頭筋<span class="m-pop"><a class="pop-item" href="pages/座学/03-大腿四頭筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/03-大腿四頭筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 5</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>13</b>腹直筋群<span class="m-pop"><a class="pop-item" href="pages/座学/13-腹直筋群.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/13-腹直筋群.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>11</b>腓腹筋<span class="m-pop"><a class="pop-item" href="pages/座学/11-腓腹筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/11-腓腹筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>12</b>ヒラメ筋<span class="m-pop"><a class="pop-item" href="pages/座学/12-ヒラメ筋.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/12-ヒラメ筋.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.1s">
+          <div class="wk-num"><b>02</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">生理学・運動学</div>
+            <div class="detail">エネルギー代謝／筋肥大の原理／動作分析／姿勢評価／プログラム作成（5日構成）</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>1</b>生理学の基礎<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/生理運動01-生理学の基礎.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/生理運動01-生理学の基礎.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 2</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>2</b>筋肉と神経<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/生理運動02-筋肉と神経.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/生理運動02-筋肉と神経.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 3</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>3</b>運動学の基礎<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/生理運動03-運動学の基礎.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/生理運動03-運動学の基礎.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>4</b>機能解剖と姿勢評価<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/生理運動04-機能解剖と姿勢評価.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/生理運動04-機能解剖と姿勢評価.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 5</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>5</b>プログラム作成<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/生理運動05-プログラム作成.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/生理運動05-プログラム作成.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.15s">
+          <div class="wk-num"><b>03</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">ストレッチ</div>
+            <div class="detail">ダイナミックストレッチ・スタティックストレッチ</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1–3</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/ストレッチ-ダイナミックストレッチ.html"
+                    onclick="event.stopPropagation()">ダイナミックストレッチ</a>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4–5</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/ストレッチ-スタティックストレッチ.html"
+                    onclick="event.stopPropagation()">スタティックストレッチ</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.2s">
+          <div class="wk-num"><b>04</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">筋トレ5種目</div>
+            <div class="detail">Squat・DB press</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1–3</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ01-スクワット.html"
+                    onclick="event.stopPropagation()"><b>1</b>スクワット</a>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4–5</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ02-ダンベルプレス.html"
+                    onclick="event.stopPropagation()"><b>2</b>ダンベルプレス</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.25s">
+          <div class="wk-num"><b>05</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">筋トレ5種目</div>
+            <div class="detail">Lat pulldown・Crunch</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1–3</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ03-ラットプルダウン.html"
+                    onclick="event.stopPropagation()"><b>3</b>ラットプルダウン</a>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4–5</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ04-クランチ.html"
+                    onclick="event.stopPropagation()"><b>4</b>クランチ</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.3s">
+          <div class="wk-num"><b>06</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">筋トレ5種目</div>
+            <div class="detail">Plank＋ 5種目の総復習</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1–3</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ05-プランク.html"
+                    onclick="event.stopPropagation()"><b>5</b>プランク</a>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4–5</span></div>
+                <div class="day-muscles">
+                  <a class="m" href="pages/座学/筋トレ01-スクワット.html"
+                    onclick="event.stopPropagation()">総復習：スクワット</a>
+                  <a class="m" href="pages/座学/筋トレ02-ダンベルプレス.html"
+                    onclick="event.stopPropagation()">ダンベルプレス</a>
+                  <a class="m" href="pages/座学/筋トレ03-ラットプルダウン.html"
+                    onclick="event.stopPropagation()">ラットプルダウン</a>
+                  <a class="m" href="pages/座学/筋トレ04-クランチ.html"
+                    onclick="event.stopPropagation()">クランチ</a>
+                  <a class="m" href="pages/座学/筋トレ05-プランク.html"
+                    onclick="event.stopPropagation()">プランク</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="week" style="animation-delay:.35s">
+          <div class="wk-num"><b>07</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">トレーニングの流れ</div>
+            <div class="detail">セッション全体の組み立て（※詳細内容はマニュアル確定後に追加）</div>
+          </div>
+        </div>
+
+        <div class="week expandable" style="animation-delay:.4s">
+          <div class="wk-num"><b>08</b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">10大栄養学</div>
+            <div class="detail">糖質・たんぱく質・脂質・ビタミン・ミネラル・食物繊維・水・酵素・抗酸化物質・ファイトケミカル ＋ お客様への提案・カロリー計算</div>
+          </div>
+          <div class="muscle-panel">
+            <div class="day-plan">
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 1</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>1</b>糖質<span class="m-pop"><a class="pop-item" href="pages/座学/栄養01-糖質.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養01-糖質.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>2</b>たんぱく質<span class="m-pop"><a class="pop-item" href="pages/座学/栄養02-たんぱく質.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養02-たんぱく質.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>3</b>脂質<span class="m-pop"><a class="pop-item" href="pages/座学/栄養03-脂質.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養03-脂質.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 2</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>4</b>ビタミン<span class="m-pop"><a class="pop-item" href="pages/座学/栄養04-ビタミン.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養04-ビタミン.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>5</b>ミネラル<span class="m-pop"><a class="pop-item" href="pages/座学/栄養05-ミネラル.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養05-ミネラル.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 3</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>6</b>食物繊維<span class="m-pop"><a class="pop-item" href="pages/座学/栄養06-食物繊維.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養06-食物繊維.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>7</b>水<span class="m-pop"><a class="pop-item" href="pages/座学/栄養07-水.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養07-水.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 4</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>8</b>酵素<span class="m-pop"><a class="pop-item" href="pages/座学/栄養08-酵素.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養08-酵素.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m"><b>9</b>抗酸化物質<span class="m-pop"><a class="pop-item" href="pages/座学/栄養09-抗酸化物質.html"
+                        onclick="event.stopPropagation()"><span>1</span>座学</a><a class="pop-item"
+                        href="pages/小テスト/栄養09-抗酸化物質.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><span class="day-n">DAY 5</span></div>
+                <div class="day-muscles">
+                  <span class="m"><b>10</b>ファイトケミカル<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/栄養10-ファイトケミカル.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/栄養10-ファイトケミカル.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                  <span class="m">お客様への提案・カロリー計算<span class="m-pop"><a class="pop-item"
+                        href="pages/座学/栄養11-提案カロリー計算.html" onclick="event.stopPropagation()"><span>1</span>座学</a><a
+                        class="pop-item" href="pages/小テスト/栄養11-提案カロリー計算.html"
+                        onclick="event.stopPropagation()"><span>2</span>小テスト</a></span></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ PHASE B ============ -->
+    <section class="phase-b">
+      <div class="phase phase-b">
+        <div class="tag">B</div>
+        <div>
+          <h2>実践研修</h2>
+          <p>実際のレッスン・接客・パートナーストレッチ・フーミンワーク／1か月</p>
+        </div>
+      </div>
+
+      <div class="track">
+
+        <div class="week" style="animation-delay:.45s">
+          <div class="wk-num"><b>09<span style="font-size:18px"> –10</span></b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">実際のレッスン・お客様対応</div>
+            <div class="detail">実レッスンの進め方／お客様とのコミュニケーション・対応</div>
+          </div>
+        </div>
+
+        <div class="week" style="animation-delay:.5s">
+          <div class="wk-num"><b>11<span style="font-size:18px"> –12</span></b><span>WEEK</span></div>
+          <div class="wk-body">
+            <div class="cat">パートナーストレッチ・Fuminワーク</div>
+            <div class="detail">パートナーストレッチ／Fuminワークの実技習得</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="note">
+      <b>運用メモ</b>
+      <ul>
+        <li>各項目は「座学 → 小テスト」の順で実施。各小テストは <b>5問程度</b>・<b>すべて日本語</b>。</li>
+        <li>研修内容・小テストの中身は、<b>マニュアル原本に基づいて作成</b>します（現在ファイル待ち）。</li>
+        <li>Week 7「トレーニングの流れ」は内容追記後に詳細を反映します。</li>
+        <li>筋トレ5種目は負荷を平準化するため、2種目→2種目→1種目+総復習の3週構成にしています。</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.week.expandable').forEach(function (w) {
+      var panel = w.querySelector('.muscle-panel');
+      w.addEventListener('click', function () {
+        // collapsing: re-clip so the slide-up animation hides the content
+        if (w.classList.contains('open')) panel.style.overflow = 'hidden';
+        w.classList.toggle('open');
+      });
+      // once fully open, let the hover pop-overs escape the panel bounds
+      panel.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'max-height' && w.classList.contains('open')) {
+          panel.style.overflow = 'visible';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

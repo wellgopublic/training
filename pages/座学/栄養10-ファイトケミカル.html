@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ファイトケミカル ｜座学</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
+ .wrap{max-width:760px;margin:0 auto}
+ .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--a-deep);text-decoration:none;margin-bottom:26px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow);transition:border-color .2s ease}
+ .back:hover{border-color:var(--a)}
+ .kicker{font-family:"Outfit",sans-serif;font-weight:700;letter-spacing:.28em;font-size:11px;color:var(--a-deep);text-transform:uppercase;margin-bottom:12px}
+ h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
+ h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
+ .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:30px}
+ .card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+ .card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+ .card h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .card p{font-size:14px;color:var(--muted)}
+ .ph{color:rgba(0, 74, 173, .5);font-style:italic}
+ .hero{margin-bottom:16px;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+ .hero img{display:block;width:100%;height:auto}
+ .vocab{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-top:24px;margin-bottom:16px}
+ .vocab > h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-right:80px}
+ .vocab > h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .vocab .toggle{position:absolute;top:18px;right:18px;font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12px;color:var(--a-deep);background:var(--a-soft);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .2s ease,background .2s ease}
+ .vocab .toggle:hover{border-color:var(--a);background:#fff}
+ .vocab.is-collapsed .vbody{display:none}
+ .vocab h3{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:13px;color:var(--a-deep);margin:18px 0 8px;letter-spacing:.04em}
+ .vtable{width:100%;border-collapse:collapse;font-size:13px}
+ .vtable th,.vtable td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+ .vtable th{font-weight:700;background:var(--a-soft);color:var(--a-deep);font-size:12px;letter-spacing:.04em}
+ .vtable td.kj{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;color:var(--ink);white-space:nowrap}
+ .vtable td.kn{color:var(--muted);font-size:12px;white-space:nowrap}
+ .vtable td.th{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <a class="back" href="../../研修タイムテーブル.html">← 研修タイムテーブルに戻る</a>
+ <div class="kicker">栄養学 ／ 5. 10大栄養素</div>
+ <h1>ファイトケミカル<span class="badge">座学</span></h1>
+ <div class="meta">No.10 ／ 役割・食品・指導ポイントを学ぶ</div>
+
+ <figure class="hero"><img src="../../Picture/10大栄養素/ファイトケミカル1.png" alt="ファイトケミカル1 - 基本・種類・役割"></figure>
+ <figure class="hero"><img src="../../Picture/10大栄養素/ファイトケミカル2.png" alt="ファイトケミカル2 - 摂取方法"></figure>
+
+ <section class="vocab is-collapsed" id="vocab">
+  <button type="button" class="toggle" aria-expanded="false" aria-controls="vocab-body" onclick="(function(b){var s=document.getElementById('vocab');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',!open);b.textContent=open?'見る':'隠す';})(this)">見る</button>
+  <h2>ことばリスト</h2>
+  <div class="vbody" id="vocab-body">
+
+  <h3>基本 ／ พื้นฐาน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">ファイトケミカル</td><td class="kn">ふぁいとけみかる</td><td class="th">ไฟโตเคมิคอล (สารพฤกษเคมี)</td></tr>
+    <tr><td class="kj">植物由来</td><td class="kn">しょくぶつゆらい</td><td class="th">มาจากพืช</td></tr>
+    <tr><td class="kj">化学物質</td><td class="kn">かがくぶっしつ</td><td class="th">สารเคมี</td></tr>
+    <tr><td class="kj">植物</td><td class="kn">しょくぶつ</td><td class="th">พืช</td></tr>
+    <tr><td class="kj">外部</td><td class="kn">がいぶ</td><td class="th">ภายนอก</td></tr>
+    <tr><td class="kj">環境</td><td class="kn">かんきょう</td><td class="th">สภาพแวดล้อม</td></tr>
+    <tr><td class="kj">身を守る</td><td class="kn">みをまもる</td><td class="th">ป้องกันตัวเอง</td></tr>
+    <tr><td class="kj">生成</td><td class="kn">せいせい</td><td class="th">การสร้าง / ผลิต</td></tr>
+    <tr><td class="kj">成分</td><td class="kn">せいぶん</td><td class="th">ส่วนประกอบ / สาร</td></tr>
+    <tr><td class="kj">野菜</td><td class="kn">やさい</td><td class="th">ผัก</td></tr>
+    <tr><td class="kj">果物</td><td class="kn">くだもの</td><td class="th">ผลไม้</td></tr>
+    <tr><td class="kj">豆類</td><td class="kn">まめるい</td><td class="th">ถั่ว (ประเภทถั่ว)</td></tr>
+    <tr><td class="kj">食品</td><td class="kn">しょくひん</td><td class="th">อาหาร</td></tr>
+    <tr><td class="kj">苦み</td><td class="kn">にがみ</td><td class="th">รสขม</td></tr>
+    <tr><td class="kj">渋み</td><td class="kn">しぶみ</td><td class="th">รสฝาด</td></tr>
+    <tr><td class="kj">香り</td><td class="kn">かおり</td><td class="th">กลิ่นหอม</td></tr>
+    <tr><td class="kj">色素</td><td class="kn">しきそ</td><td class="th">เม็ดสี / สีในธรรมชาติ</td></tr>
+   </tbody>
+  </table>
+
+  <h3>特徴 ／ ลักษณะเด่น</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">補助的</td><td class="kn">ほじょてき</td><td class="th">เสริม / ช่วยเหลือ</td></tr>
+    <tr><td class="kj">役割</td><td class="kn">やくわり</td><td class="th">บทบาท / หน้าที่</td></tr>
+    <tr><td class="kj">体内</td><td class="kn">たいない</td><td class="th">ภายในร่างกาย</td></tr>
+    <tr><td class="kj">合成</td><td class="kn">ごうせい</td><td class="th">การสังเคราะห์</td></tr>
+    <tr><td class="kj">摂取</td><td class="kn">せっしゅ</td><td class="th">การบริโภค</td></tr>
+    <tr><td class="kj">必要</td><td class="kn">ひつよう</td><td class="th">จำเป็น</td></tr>
+    <tr><td class="kj">維持</td><td class="kn">いじ</td><td class="th">การคงไว้ / รักษา</td></tr>
+    <tr><td class="kj">健康</td><td class="kn">けんこう</td><td class="th">สุขภาพ</td></tr>
+   </tbody>
+  </table>
+
+  <h3>種類 ／ ชนิดของไฟโตเคมิคอล</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">種類</td><td class="kn">しゅるい</td><td class="th">ชนิด / ประเภท</td></tr>
+    <tr><td class="kj">ポリフェノール類</td><td class="kn">ぽりふぇのーるるい</td><td class="th">กลุ่มโพลีฟีนอล</td></tr>
+    <tr><td class="kj">カテキン</td><td class="kn">かてきん</td><td class="th">คาเทชิน</td></tr>
+    <tr><td class="kj">緑茶</td><td class="kn">りょくちゃ</td><td class="th">ชาเขียว</td></tr>
+    <tr><td class="kj">アントシアニン</td><td class="kn">あんとしあにん</td><td class="th">แอนโทไซยานิน</td></tr>
+    <tr><td class="kj">ブルーベリー</td><td class="kn">ぶるーべりー</td><td class="th">บลูเบอร์รี่</td></tr>
+    <tr><td class="kj">レスベラトロール</td><td class="kn">れすべらとろーる</td><td class="th">เรสเวอราทรอล</td></tr>
+    <tr><td class="kj">赤ワイン</td><td class="kn">あかわいん</td><td class="th">ไวน์แดง</td></tr>
+    <tr><td class="kj">カロテノイド類</td><td class="kn">かろてのいどるい</td><td class="th">กลุ่มแคโรทีนอยด์</td></tr>
+    <tr><td class="kj">β-カロテン</td><td class="kn">べーたかろてん</td><td class="th">เบต้าแคโรทีน</td></tr>
+    <tr><td class="kj">人参</td><td class="kn">にんじん</td><td class="th">แครอท</td></tr>
+    <tr><td class="kj">リコピン</td><td class="kn">りこぴん</td><td class="th">ไลโคปีน</td></tr>
+    <tr><td class="kj">トマト</td><td class="kn">とまと</td><td class="th">มะเขือเทศ</td></tr>
+    <tr><td class="kj">ルテイン</td><td class="kn">るていん</td><td class="th">ลูทีน</td></tr>
+    <tr><td class="kj">ほうれん草</td><td class="kn">ほうれんそう</td><td class="th">ผักโขม</td></tr>
+    <tr><td class="kj">ゼアキサンチン</td><td class="kn">ぜあきさんちん</td><td class="th">ซีแซนทีน</td></tr>
+    <tr><td class="kj">イソチオシアネート類</td><td class="kn">いそちおしあねーとるい</td><td class="th">กลุ่มไอโซไทโอไซยาเนต</td></tr>
+    <tr><td class="kj">スルフォラファン</td><td class="kn">するふぉらふぁん</td><td class="th">ซัลโฟราเฟน</td></tr>
+    <tr><td class="kj">ブロッコリー</td><td class="kn">ぶろっこりー</td><td class="th">บรอกโคลี</td></tr>
+    <tr><td class="kj">アリルイソチオシアネート</td><td class="kn">ありるいそちおしあねーと</td><td class="th">อัลลิลไอโซไทโอไซยาเนต</td></tr>
+    <tr><td class="kj">大根</td><td class="kn">だいこん</td><td class="th">หัวไชเท้า</td></tr>
+   </tbody>
+  </table>
+
+  <h3>効果・働き ／ ประสิทธิภาพ・การทำงาน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">効果</td><td class="kn">こうか</td><td class="th">ผล / ประสิทธิภาพ</td></tr>
+    <tr><td class="kj">強力</td><td class="kn">きょうりょく</td><td class="th">ทรงพลัง / รุนแรง</td></tr>
+    <tr><td class="kj">抗酸化作用</td><td class="kn">こうさんかさよう</td><td class="th">ฤทธิ์ต้านอนุมูลอิสระ</td></tr>
+    <tr><td class="kj">活性酸素</td><td class="kn">かっせいさんそ</td><td class="th">อนุมูลอิสระ</td></tr>
+    <tr><td class="kj">除去</td><td class="kn">じょきょ</td><td class="th">การกำจัด</td></tr>
+    <tr><td class="kj">動脈硬化</td><td class="kn">どうみゃくこうか</td><td class="th">หลอดเลือดแดงแข็ง</td></tr>
+    <tr><td class="kj">心疾患</td><td class="kn">しんしっかん</td><td class="th">โรคหัวใจ</td></tr>
+    <tr><td class="kj">予防</td><td class="kn">よぼう</td><td class="th">การป้องกัน</td></tr>
+    <tr><td class="kj">老化防止</td><td class="kn">ろうかぼうし</td><td class="th">การป้องกันการแก่ชรา</td></tr>
+    <tr><td class="kj">美肌効果</td><td class="kn">びはだこうか</td><td class="th">ผลบำรุงผิว</td></tr>
+    <tr><td class="kj">目の健康維持</td><td class="kn">めのけんこういじ</td><td class="th">การรักษาสุขภาพดวงตา</td></tr>
+    <tr><td class="kj">紫外線</td><td class="kn">しがいせん</td><td class="th">รังสียูวี (UV)</td></tr>
+    <tr><td class="kj">肌</td><td class="kn">はだ</td><td class="th">ผิว</td></tr>
+    <tr><td class="kj">ダメージ</td><td class="kn">だめーじ</td><td class="th">ความเสียหาย</td></tr>
+    <tr><td class="kj">軽減</td><td class="kn">けいげん</td><td class="th">การลดลง / บรรเทา</td></tr>
+    <tr><td class="kj">抗がん作用</td><td class="kn">こうがんさよう</td><td class="th">ฤทธิ์ต้านมะเร็ง</td></tr>
+    <tr><td class="kj">解毒酵素</td><td class="kn">げどくこうそ</td><td class="th">เอนไซม์ขจัดสารพิษ</td></tr>
+    <tr><td class="kj">活性化</td><td class="kn">かっせいか</td><td class="th">การกระตุ้น / เปิดการทำงาน</td></tr>
+    <tr><td class="kj">免疫力</td><td class="kn">めんえきりょく</td><td class="th">ภูมิคุ้มกัน</td></tr>
+    <tr><td class="kj">向上</td><td class="kn">こうじょう</td><td class="th">การเพิ่มขึ้น / พัฒนา</td></tr>
+    <tr><td class="kj">血流改善</td><td class="kn">けつりゅうかいぜん</td><td class="th">การปรับปรุงการไหลเวียนเลือด</td></tr>
+   </tbody>
+  </table>
+
+  <h3>病気・リスク ／ โรค・ความเสี่ยง</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">脳卒中</td><td class="kn">のうそっちゅう</td><td class="th">โรคหลอดเลือดสมอง / สโตรก</td></tr>
+    <tr><td class="kj">がん</td><td class="kn">がん</td><td class="th">มะเร็ง</td></tr>
+    <tr><td class="kj">生活習慣病</td><td class="kn">せいかつしゅうかんびょう</td><td class="th">โรคจากพฤติกรรม/ไลฟ์สไตล์</td></tr>
+    <tr><td class="kj">NCDs</td><td class="kn">えぬしーでぃーず</td><td class="th">โรคไม่ติดต่อเรื้อรัง</td></tr>
+    <tr><td class="kj">リスク低下</td><td class="kn">りすくていか</td><td class="th">การลดความเสี่ยง</td></tr>
+    <tr><td class="kj">毒素</td><td class="kn">どくそ</td><td class="th">สารพิษ</td></tr>
+    <tr><td class="kj">解毒</td><td class="kn">げどく</td><td class="th">การขจัดสารพิษ</td></tr>
+    <tr><td class="kj">心血管疾患</td><td class="kn">しんけっかんしっかん</td><td class="th">โรคหัวใจและหลอดเลือด</td></tr>
+   </tbody>
+  </table>
+
+  <h3>摂取方法 ／ วิธีบริโภค</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">摂取方法</td><td class="kn">せっしゅほうほう</td><td class="th">วิธีบริโภค</td></tr>
+    <tr><td class="kj">新鮮</td><td class="kn">しんせん</td><td class="th">สด / สดใหม่</td></tr>
+    <tr><td class="kj">取り入れる</td><td class="kn">とりいれる</td><td class="th">นำเข้ามา / รับเข้า</td></tr>
+    <tr><td class="kj">色の濃い</td><td class="kn">いろのこい</td><td class="th">สีเข้ม</td></tr>
+    <tr><td class="kj">緑</td><td class="kn">みどり</td><td class="th">สีเขียว</td></tr>
+    <tr><td class="kj">赤</td><td class="kn">あか</td><td class="th">สีแดง</td></tr>
+    <tr><td class="kj">紫</td><td class="kn">むらさき</td><td class="th">สีม่วง</td></tr>
+    <tr><td class="kj">黄</td><td class="kn">き</td><td class="th">สีเหลือง</td></tr>
+    <tr><td class="kj">多く</td><td class="kn">おおく</td><td class="th">มาก / เยอะ</td></tr>
+    <tr><td class="kj">含まれる</td><td class="kn">ふくまれる</td><td class="th">มีอยู่ใน / ประกอบด้วย</td></tr>
+    <tr><td class="kj">芋類</td><td class="kn">いもるい</td><td class="th">มันชนิดต่าง ๆ</td></tr>
+    <tr><td class="kj">海藻類</td><td class="kn">かいそうるい</td><td class="th">สาหร่าย</td></tr>
+    <tr><td class="kj">お茶</td><td class="kn">おちゃ</td><td class="th">ชา</td></tr>
+    <tr><td class="kj">ハーブ</td><td class="kn">はーぶ</td><td class="th">สมุนไพร</td></tr>
+   </tbody>
+  </table>
+
+  <h3>注意点 ／ ข้อควรระวัง</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">加熱</td><td class="kn">かねつ</td><td class="th">การให้ความร้อน</td></tr>
+    <tr><td class="kj">調理法</td><td class="kn">ちょうりほう</td><td class="th">วิธีปรุงอาหาร</td></tr>
+    <tr><td class="kj">注意</td><td class="kn">ちゅうい</td><td class="th">ระมัดระวัง / ข้อระวัง</td></tr>
+    <tr><td class="kj">一部</td><td class="kn">いちぶ</td><td class="th">ส่วนหนึ่ง / บางส่วน</td></tr>
+    <tr><td class="kj">失活</td><td class="kn">しっかつ</td><td class="th">สูญเสียการทำงาน / สลายฤทธิ์</td></tr>
+    <tr><td class="kj">可能性</td><td class="kn">かのうせい</td><td class="th">ความเป็นไปได้</td></tr>
+   </tbody>
+  </table>
+  </div>
+ </section>
+</div>
+</body>
+</html>

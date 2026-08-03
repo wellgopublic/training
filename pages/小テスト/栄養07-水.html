@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>水 ｜小テスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);--ok:#137a41;--ok-line:#1f9d57;--ng:#b32636;--ng-line:#d63a4a;--warn:#9a6a00;--warn-line:#e0a020;}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
+ .wrap{max-width:760px;margin:0 auto}
+ .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--a-deep);text-decoration:none;margin-bottom:26px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow);transition:border-color .2s ease}
+ .back:hover{border-color:var(--a)}
+ .kicker{font-family:"Outfit",sans-serif;font-weight:700;letter-spacing:.28em;font-size:11px;color:var(--a-deep);text-transform:uppercase;margin-bottom:12px}
+ h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
+ h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
+ .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:18px}
+ .note{font-size:13px;color:var(--muted);background:var(--a-soft);border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:24px}
+ .note b{color:var(--ink);font-weight:700}
+ .q{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:20px 24px;box-shadow:var(--shadow);margin-bottom:14px;display:flex;gap:14px;align-items:flex-start}
+ .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+ .q .body{flex:1}
+ .q .body .qt{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:12px}
+ .opts{list-style:none;display:grid;gap:8px}
+ .opts li{font-size:13.5px;color:var(--ink);background:var(--a-soft);border:1.5px solid transparent;border-radius:10px;padding:9px 13px;display:flex;gap:9px;align-items:center;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+ .opts li:hover{background:rgba(0, 74, 173, .14)}
+ .opts li .mk{font-family:"Outfit",sans-serif;font-weight:900;font-size:12px;color:var(--a-deep);width:22px;height:22px;border-radius:7px;background:#fff;display:grid;place-items:center;flex:none}
+ .opts li.selected{background:rgba(0, 74, 173, .16);border-color:var(--a)}
+ .opts li.selected .mk{background:var(--a);color:#fff}
+ .opts li.correct{background:rgba(31, 157, 87, .14);border-color:var(--ok-line);color:var(--ok)}
+ .opts li.correct .mk{background:var(--ok-line);color:#fff}
+ .opts li.wrong{background:rgba(214, 58, 74, .12);border-color:var(--ng-line);color:var(--ng)}
+ .opts li.wrong .mk{background:var(--ng-line);color:#fff}
+ .opts li .tick{margin-left:auto;font-weight:900;font-size:15px}
+ .graded .opts li{cursor:default}
+ .graded .opts li:hover{background:var(--a-soft)}
+ .graded .opts li.selected:hover{background:rgba(0, 74, 173, .16)}
+ .graded .opts li.correct:hover{background:rgba(31, 157, 87, .14)}
+ .graded .opts li.wrong:hover{background:rgba(214, 58, 74, .12)}
+ .actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+ .btn{font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;border-radius:12px;padding:12px 26px;box-shadow:var(--shadow);transition:transform .15s ease,opacity .15s ease}
+ .btn:active{transform:translateY(1px)}
+ .btn-primary{background:linear-gradient(135deg,var(--a),var(--a-deep));color:#fff}
+ .btn-ghost{background:var(--card);color:var(--a-deep);border:1.5px solid var(--line)}
+ .result{margin-top:20px;border-radius:16px;padding:18px 22px;font-weight:700;display:none}
+ .result.show{display:block}
+ .result .score{font-family:"Outfit",sans-serif;font-weight:900;font-size:32px;line-height:1.1;margin-bottom:4px}
+ .result.pass{background:rgba(31, 157, 87, .12);color:var(--ok);border:1.5px solid var(--ok-line)}
+ .result.mid{background:var(--a-soft);color:var(--a-deep);border:1.5px solid var(--a)}
+ .result.fail{background:rgba(214, 58, 74, .1);color:var(--ng);border:1.5px solid var(--ng-line)}
+ .result.warn{background:rgba(230, 160, 30, .12);color:var(--warn);border:1.5px solid var(--warn-line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <a class="back" href="../../研修タイムテーブル.html">← 研修タイムテーブルに戻る</a>
+ <div class="kicker">栄養学</div>
+ <h1>水<span class="badge">小テスト</span></h1>
+ <div class="meta">No.7 ／ 全5問・4択（アイウエ）・やさしい日本語（N5〜N3）</div>
+ <div class="note"><b>説明：</b>座学の内容から、いちばん正しい答えを1つ選びなさい。すべて答えたら「採点する」を押してください。</div>
+
+ <div id="quiz">
+
+ <div class="q" data-answer="イ"><div class="n">1</div><div class="body">
+   <p class="qt">大人の体の中で、いちばん多いものは何ですか？</p>
+   <ul class="opts">
+     <li data-opt="ア"><span class="mk">ア</span>骨</li>
+     <li data-opt="イ"><span class="mk">イ</span>水</li>
+     <li data-opt="ウ"><span class="mk">ウ</span>筋肉</li>
+     <li data-opt="エ"><span class="mk">エ</span>脂肪</li>
+   </ul>
+ </div></div>
+
+ <div class="q" data-answer="エ"><div class="n">2</div><div class="body">
+   <p class="qt">汗をかくと、体温はどうなりますか？</p>
+   <ul class="opts">
+     <li data-opt="ア"><span class="mk">ア</span>上がる</li>
+     <li data-opt="イ"><span class="mk">イ</span>変わらない</li>
+     <li data-opt="ウ"><span class="mk">ウ</span>わからない</li>
+     <li data-opt="エ"><span class="mk">エ</span>下がる</li>
+   </ul>
+ </div></div>
+
+ <div class="q" data-answer="ア"><div class="n">3</div><div class="body">
+   <p class="qt">水が足りないとき、体に起きることはどれですか？</p>
+   <ul class="opts">
+     <li data-opt="ア"><span class="mk">ア</span>頭がいたくなる・めまいがする</li>
+     <li data-opt="イ"><span class="mk">イ</span>力が強くなる</li>
+     <li data-opt="ウ"><span class="mk">ウ</span>目がよく見える</li>
+     <li data-opt="エ"><span class="mk">エ</span>背が高くなる</li>
+   </ul>
+ </div></div>
+
+ <div class="q" data-answer="ウ"><div class="n">4</div><div class="body">
+   <p class="qt">水をいちどにたくさん飲みすぎると、何になることがありますか？</p>
+   <ul class="opts">
+     <li data-opt="ア"><span class="mk">ア</span>貧血</li>
+     <li data-opt="イ"><span class="mk">イ</span>骨折</li>
+     <li data-opt="ウ"><span class="mk">ウ</span>水中毒</li>
+     <li data-opt="エ"><span class="mk">エ</span>虫歯</li>
+   </ul>
+ </div></div>
+
+ <div class="q" data-answer="イ"><div class="n">5</div><div class="body">
+   <p class="qt">大人は1日にどれくらいの水を飲むといいですか？</p>
+   <ul class="opts">
+     <li data-opt="ア"><span class="mk">ア</span>だいたい 0.5リットル</li>
+     <li data-opt="イ"><span class="mk">イ</span>だいたい 2〜3リットル</li>
+     <li data-opt="ウ"><span class="mk">ウ</span>だいたい 6リットル</li>
+     <li data-opt="エ"><span class="mk">エ</span>だいたい 10リットル</li>
+   </ul>
+ </div></div>
+
+ </div>
+
+ <div class="actions">
+   <button id="grade" class="btn btn-primary">採点する</button>
+   <button id="reset" class="btn btn-ghost">リセット</button>
+ </div>
+
+ <div id="result" class="result"></div>
+</div>
+
+<script>
+ var quiz = document.getElementById('quiz');
+ var result = document.getElementById('result');
+
+ // 画面に出ている全5問
+ var questions = Array.from(quiz.querySelectorAll('.q'));
+
+ function clearMarks() {
+   questions.forEach(function (q) {
+     q.querySelectorAll('.opts li').forEach(function (o) {
+       o.classList.remove('correct', 'wrong');
+       var t = o.querySelector('.tick');
+       if (t) t.remove();
+     });
+   });
+   quiz.classList.remove('graded');
+ }
+
+ function addTick(li, sym) {
+   var s = document.createElement('span');
+   s.className = 'tick';
+   s.textContent = sym;
+   li.appendChild(s);
+ }
+
+ // 選択肢のクリック
+ questions.forEach(function (q) {
+   q.querySelectorAll('.opts li').forEach(function (li) {
+     li.addEventListener('click', function () {
+       if (quiz.classList.contains('graded')) return;
+       q.querySelectorAll('.opts li').forEach(function (o) { o.classList.remove('selected'); });
+       li.classList.add('selected');
+     });
+   });
+ });
+
+ document.getElementById('grade').addEventListener('click', function () {
+   var unanswered = questions.filter(function (q) { return !q.querySelector('.opts li.selected'); });
+   if (unanswered.length) {
+     result.className = 'result show warn';
+     result.innerHTML = '<div>まだ答えていない問題があります（残り ' + unanswered.length + ' 問）。すべて答えてから「採点する」を押してください。</div>';
+     result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+     return;
+   }
+   clearMarks();
+   var score = 0;
+   questions.forEach(function (q) {
+     var ans = q.getAttribute('data-answer');
+     var sel = q.querySelector('.opts li.selected');
+     var correctLi = q.querySelector('.opts li[data-opt="' + ans + '"]');
+     correctLi.classList.add('correct');
+     addTick(correctLi, '✓');
+     if (sel.getAttribute('data-opt') === ans) {
+       score++;
+     } else {
+       sel.classList.add('wrong');
+       addTick(sel, '✕');
+     }
+   });
+   quiz.classList.add('graded');
+   var total = questions.length;
+   var pct = Math.round(score / total * 100);
+   var cls = score === total ? 'pass' : (score >= total * 0.6 ? 'mid' : 'fail');
+   var msg = score === total ? '満点！すばらしい！' : '正しい答えをかくにんしましょう。';
+   result.className = 'result show ' + cls;
+   result.innerHTML = '<div class="score">' + score + ' / ' + total + ' 問正解</div><div>正答率 ' + pct + '％ — ' + msg + '</div>';
+   result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+ });
+
+ document.getElementById('reset').addEventListener('click', function () {
+   questions.forEach(function (q) {
+     q.querySelectorAll('.opts li').forEach(function (o) { o.classList.remove('selected'); });
+   });
+   clearMarks();
+   result.className = 'result';
+   result.innerHTML = '';
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脂質 ｜座学</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
+ .wrap{max-width:760px;margin:0 auto}
+ .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--a-deep);text-decoration:none;margin-bottom:26px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow);transition:border-color .2s ease}
+ .back:hover{border-color:var(--a)}
+ .kicker{font-family:"Outfit",sans-serif;font-weight:700;letter-spacing:.28em;font-size:11px;color:var(--a-deep);text-transform:uppercase;margin-bottom:12px}
+ h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
+ h1 .badge{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:10px;padding:4px 12px;margin-left:10px;vertical-align:middle;font-family:"Noto Sans JP",sans-serif}
+ .meta{font-size:13px;color:var(--muted);margin-top:10px;margin-bottom:30px}
+ .card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+ .card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+ .card h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .card p{font-size:14px;color:var(--muted)}
+ .ph{color:rgba(0, 74, 173, .5);font-style:italic}
+ .hero{margin-bottom:24px;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+ .hero img{display:block;width:100%;height:auto}
+ .vocab{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+ .vocab > h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-right:80px}
+ .vocab > h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .vocab .toggle{position:absolute;top:18px;right:18px;font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12px;color:var(--a-deep);background:var(--a-soft);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;transition:border-color .2s ease,background .2s ease}
+ .vocab .toggle:hover{border-color:var(--a);background:#fff}
+ .vocab.is-collapsed .vbody{display:none}
+ .vocab h3{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:13px;color:var(--a-deep);margin:18px 0 8px;letter-spacing:.04em}
+ .vtable{width:100%;border-collapse:collapse;font-size:13px}
+ .vtable th,.vtable td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+ .vtable th{font-weight:700;background:var(--a-soft);color:var(--a-deep);font-size:12px;letter-spacing:.04em}
+ .vtable td.kj{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;color:var(--ink);white-space:nowrap}
+ .vtable td.kn{color:var(--muted);font-size:12px;white-space:nowrap}
+ .vtable td.th{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <a class="back" href="../../研修タイムテーブル.html">← 研修タイムテーブルに戻る</a>
+ <div class="kicker">栄養学 ／ 5. 10大栄養素</div>
+ <h1>脂質<span class="badge">座学</span></h1>
+ <div class="meta">No.3 ／ 役割・食品・指導ポイントを学ぶ</div>
+
+ <figure class="hero"><img src="../../Picture/10大栄養素/脂質.png" alt="脂質"></figure>
+
+ <section class="vocab is-collapsed" id="vocab">
+  <button type="button" class="toggle" aria-expanded="false" aria-controls="vocab-body" onclick="(function(b){var s=document.getElementById('vocab');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',!open);b.textContent=open?'見る':'隠す';})(this)">見る</button>
+  <h2>ことばリスト</h2>
+  <div class="vbody" id="vocab-body">
+
+  <h3>基本 ／ พื้นฐาน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">脂質</td><td class="kn">ししつ</td><td class="th">ไขมัน / ลิปิด</td></tr>
+    <tr><td class="kj">糖質</td><td class="kn">とうしつ</td><td class="th">คาร์โบไฮเดรต</td></tr>
+    <tr><td class="kj">タンパク質</td><td class="kn">たんぱくしつ</td><td class="th">โปรตีน</td></tr>
+    <tr><td class="kj">同様</td><td class="kn">どうよう</td><td class="th">เช่นเดียวกัน / เหมือนกัน</td></tr>
+    <tr><td class="kj">身体</td><td class="kn">からだ</td><td class="th">ร่างกาย</td></tr>
+    <tr><td class="kj">動かす</td><td class="kn">うごかす</td><td class="th">ทำให้เคลื่อนไหว / ขับเคลื่อน</td></tr>
+    <tr><td class="kj">エネルギー源</td><td class="kn">えねるぎーげん</td><td class="th">แหล่งพลังงาน</td></tr>
+    <tr><td class="kj">吸収</td><td class="kn">きゅうしゅう</td><td class="th">การดูดซึม</td></tr>
+    <tr><td class="kj">助ける</td><td class="kn">たすける</td><td class="th">ช่วย / สนับสนุน</td></tr>
+    <tr><td class="kj">働き</td><td class="kn">はたらき</td><td class="th">การทำงาน / บทบาท</td></tr>
+   </tbody>
+  </table>
+
+  <h3>脂質の種類 ／ ชนิดของไขมัน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">飽和脂肪酸</td><td class="kn">ほうわしぼうさん</td><td class="th">กรดไขมันอิ่มตัว</td></tr>
+    <tr><td class="kj">不飽和脂肪酸</td><td class="kn">ふほうわしぼうさん</td><td class="th">กรดไขมันไม่อิ่มตัว</td></tr>
+    <tr><td class="kj">種類</td><td class="kn">しゅるい</td><td class="th">ชนิด / ประเภท</td></tr>
+    <tr><td class="kj">動物性脂肪</td><td class="kn">どうぶつせいしぼう</td><td class="th">ไขมันจากสัตว์</td></tr>
+    <tr><td class="kj">植物性</td><td class="kn">しょくぶつせい</td><td class="th">จากพืช</td></tr>
+    <tr><td class="kj">食物油脂</td><td class="kn">しょくもつゆし</td><td class="th">น้ำมัน/ไขมันในอาหาร</td></tr>
+    <tr><td class="kj">中性脂肪</td><td class="kn">ちゅうせいしぼう</td><td class="th">ไตรกลีเซอไรด์</td></tr>
+    <tr><td class="kj">コレステロール</td><td class="kn">これすてろーる</td><td class="th">คอเลสเตอรอล</td></tr>
+   </tbody>
+  </table>
+
+  <h3>食品 ／ อาหาร</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">食品</td><td class="kn">しょくひん</td><td class="th">อาหาร</td></tr>
+    <tr><td class="kj">含まれる</td><td class="kn">ふくまれる</td><td class="th">มีอยู่ใน / ประกอบด้วย</td></tr>
+    <tr><td class="kj">オリーブオイル</td><td class="kn">おりーぶおいる</td><td class="th">น้ำมันมะกอก</td></tr>
+    <tr><td class="kj">ナッツ</td><td class="kn">なっつ</td><td class="th">ถั่ว (อัลมอนด์ ฯลฯ)</td></tr>
+    <tr><td class="kj">アボカド</td><td class="kn">あぼかど</td><td class="th">อะโวคาโด</td></tr>
+    <tr><td class="kj">サーモン</td><td class="kn">さーもん</td><td class="th">แซลมอน</td></tr>
+    <tr><td class="kj">肉類</td><td class="kn">にくるい</td><td class="th">เนื้อสัตว์ (ประเภทเนื้อ)</td></tr>
+    <tr><td class="kj">乳製品</td><td class="kn">にゅうせいひん</td><td class="th">ผลิตภัณฑ์จากนม</td></tr>
+    <tr><td class="kj">バーム油</td><td class="kn">ばーむゆ</td><td class="th">น้ำมันปาล์ม</td></tr>
+    <tr><td class="kj">魚類</td><td class="kn">さかなるい</td><td class="th">ปลา (ประเภทปลา)</td></tr>
+    <tr><td class="kj">豆類</td><td class="kn">まめるい</td><td class="th">ถั่ว (ประเภทถั่ว)</td></tr>
+   </tbody>
+  </table>
+
+  <h3>働き ／ การทำงาน</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">重要</td><td class="kn">じゅうよう</td><td class="th">สำคัญ</td></tr>
+    <tr><td class="kj">貯蔵</td><td class="kn">ちょぞう</td><td class="th">การเก็บสะสม</td></tr>
+    <tr><td class="kj">脂肪</td><td class="kn">しぼう</td><td class="th">ไขมัน</td></tr>
+    <tr><td class="kj">摂取</td><td class="kn">せっしゅ</td><td class="th">การบริโภค / รับเข้าสู่ร่างกาย</td></tr>
+    <tr><td class="kj">過剰</td><td class="kn">かじょう</td><td class="th">มากเกินไป</td></tr>
+    <tr><td class="kj">増加</td><td class="kn">ぞうか</td><td class="th">การเพิ่มขึ้น</td></tr>
+    <tr><td class="kj">下げる</td><td class="kn">さげる</td><td class="th">ทำให้ลดลง</td></tr>
+    <tr><td class="kj">血液</td><td class="kn">けつえき</td><td class="th">เลือด</td></tr>
+    <tr><td class="kj">循環</td><td class="kn">じゅんかん</td><td class="th">การไหลเวียน</td></tr>
+    <tr><td class="kj">活性化</td><td class="kn">かっせいか</td><td class="th">การกระตุ้น / เปิดการทำงาน</td></tr>
+    <tr><td class="kj">予防</td><td class="kn">よぼう</td><td class="th">การป้องกัน</td></tr>
+   </tbody>
+  </table>
+
+  <h3>体への影響・病気 ／ ผลต่อร่างกาย・โรค</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">悪玉コレステロール</td><td class="kn">あくだまこれすてろーる</td><td class="th">คอเลสเตอรอลตัวร้าย (LDL)</td></tr>
+    <tr><td class="kj">肥満</td><td class="kn">ひまん</td><td class="th">โรคอ้วน</td></tr>
+    <tr><td class="kj">生活習慣病</td><td class="kn">せいかつしゅうかんびょう</td><td class="th">โรคจากพฤติกรรม/ไลฟ์สไตล์</td></tr>
+    <tr><td class="kj">要因</td><td class="kn">よういん</td><td class="th">ปัจจัย / สาเหตุ</td></tr>
+    <tr><td class="kj">動脈硬化</td><td class="kn">どうみゃくこうか</td><td class="th">หลอดเลือดแดงแข็ง</td></tr>
+    <tr><td class="kj">心臓病</td><td class="kn">しんぞうびょう</td><td class="th">โรคหัวใจ</td></tr>
+    <tr><td class="kj">がん</td><td class="kn">がん</td><td class="th">มะเร็ง</td></tr>
+    <tr><td class="kj">脳</td><td class="kn">のう</td><td class="th">สมอง</td></tr>
+    <tr><td class="kj">脳卒中</td><td class="kn">のうそっちゅう</td><td class="th">โรคหลอดเลือดสมอง / สโตรก</td></tr>
+    <tr><td class="kj">認知症</td><td class="kn">にんちしょう</td><td class="th">โรคสมองเสื่อม</td></tr>
+   </tbody>
+  </table>
+
+  <h3>その他重要語 ／ คำสำคัญอื่น ๆ</h3>
+  <table class="vtable">
+   <thead><tr><th>漢字</th><th>ひらがな</th><th>ความหมาย (ไทย)</th></tr></thead>
+   <tbody>
+    <tr><td class="kj">主に</td><td class="kn">おもに</td><td class="th">ส่วนใหญ่</td></tr>
+    <tr><td class="kj">2種類</td><td class="kn">にしゅるい</td><td class="th">2 ชนิด</td></tr>
+    <tr><td class="kj">摂る</td><td class="kn">とる</td><td class="th">รับประทาน / บริโภค</td></tr>
+    <tr><td class="kj">含む</td><td class="kn">ふくむ</td><td class="th">รวม / มี</td></tr>
+    <tr><td class="kj">ビタミン</td><td class="kn">びたみん</td><td class="th">วิตามิน</td></tr>
+   </tbody>
+  </table>
+  </div>
+ </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# manual の元 PDF はサイトでは使わない（Picture/ の PNG に変換済み）
+# 合計 71MB あり、公開リポジトリに置くと誰でもダウンロードできてしまう
+# PDF もリポジトリに置きたい場合は、この行を消す
+manual/
+
+# Claude Code の設定
+.claude/
+
+# OS が作るファイル
+Thumbs.db
+desktop.ini
+.DS_Store
