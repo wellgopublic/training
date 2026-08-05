@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
- :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);--origin:#e5326b;--insert:#0e9bd6;}
  *{box-sizing:border-box;margin:0;padding:0}
  body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
  .wrap{max-width:760px;margin:0 auto}
@@ -37,7 +37,23 @@
  .imgwrap img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
  .fig figcaption{padding:14px 8px 6px;text-align:center}
  .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
- @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}}
+
+ /* ―― 強調カード（起始・停止）―― */
+ .keys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+ .kcard{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+ .kcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
+ .kcard.o::before{background:var(--origin)}.kcard.i::before{background:var(--insert)}
+ .kcard h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;display:flex;align-items:center;gap:9px;margin-bottom:12px}
+ .kcard h2 .tag{font-size:11px;font-weight:700;color:#fff;border-radius:999px;padding:3px 11px;font-family:"Outfit",sans-serif;letter-spacing:.08em}
+ .kcard.o h2 .tag{background:var(--origin)}.kcard.i h2 .tag{background:var(--insert)}
+ .kcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+ .kcard li{font-size:14px;font-weight:500;padding-left:18px;position:relative;color:var(--ink)}
+ .kcard li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%}
+ .kcard.o li::before{background:var(--origin)}.kcard.i li::before{background:var(--insert)}
+ .kcard li b{font-weight:700}
+ .kcard li small{display:block;font-size:11.5px;color:var(--muted);font-weight:500}
+
+ @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}.keys{grid-template-columns:1fr}}
  /* ―― 起始・停止・働き の開閉（初期状態は隠す）―― */
  .detail{margin-bottom:16px}
  .detail-head{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 20px;box-shadow:var(--shadow)}
@@ -69,16 +85,38 @@
    <button type="button" class="toggle" aria-expanded="false" aria-controls="detail-body" onclick="(function(b){var s=b.closest('.detail');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',String(!open));b.textContent=open?'見る':'隠す';})(this)">見る</button>
   </div>
   <div class="dbody" id="detail-body">
- <div class="card"><h2>起始（Origin）</h2><p class="ph">ここに起始を記載します。</p></div>
- <div class="card"><h2>停止（Insertion）</h2><p class="ph">ここに停止を記載します。</p></div>
- <div class="card"><h2>働き（Action）</h2><p class="ph">ここに主な働きを記載します。</p></div>
+   <div class="keys">
+    <div class="kcard o">
+     <h2><span class="tag">ORIGIN</span>起始</h2>
+     <ul>
+      <li><b><ruby>大腿直筋<rt>だいたいちょっきん</rt></ruby></b>：<ruby>下前腸骨棘<rt>かぜんちょうこつきょく</rt></ruby>・<ruby>寛骨臼上縁<rt>かんこつきゅうじょうえん</rt></ruby></li>
+      <li><b><ruby>内側広筋<rt>ないそくこうきん</rt></ruby></b>：<ruby>大腿骨粗線<rt>だいたいこつそせん</rt></ruby><ruby>内側唇<rt>ないそくしん</rt></ruby></li>
+      <li><b><ruby>外側広筋<rt>がいそくこうきん</rt></ruby></b>：<ruby>外側唇<rt>がいそくしん</rt></ruby></li>
+      <li><b><ruby>中間広筋<rt>ちゅうかんこうきん</rt></ruby></b>：<ruby>大腿前面<rt>だいたいぜんめん</rt></ruby></li>
+     </ul>
+    </div>
+    <div class="kcard i">
+     <h2><span class="tag">INSERTION</span>停止</h2>
+     <ul>
+      <li><b><ruby>脛骨粗面<rt>けいこつそめん</rt></ruby></b><small>4つとも共通</small></li>
+     </ul>
+    </div>
+   </div>
+
+   <div class="card"><h2>働き（Action）</h2>
+    <ul>
+     <li><b>大腿直筋</b>：<ruby>股関節屈曲<rt>こかんせつくっきょく</rt></ruby>・<ruby>膝関節伸展<rt>しつかんせつしんてん</rt></ruby>・<ruby>骨盤前傾<rt>こつばんぜんけい</rt></ruby></li>
+     <li><b>内側広筋</b>：<ruby>膝関節伸展<rt>しつかんせつしんてん</rt></ruby>・knee in <ruby>防止<rt>ぼうし</rt></ruby></li>
+     <li><b>外側広筋</b>：<ruby>膝関節伸展<rt>しつかんせつしんてん</rt></ruby>・knee out <ruby>防止<rt>ぼうし</rt></ruby></li>
+     <li><b>中間広筋</b>：<ruby>膝関節伸展<rt>しつかんせつしんてん</rt></ruby></li>
+    </ul>
+   </div>
   </div>
  </section>
- <div class="card"><h2>種目</h2>
+ <div class="card"><h2>トレーニングのポイント</h2>
   <ul>
-   <li><b>スクワット</b><span class="sub">四頭筋全体を鍛える基本種目</span></li>
-   <li><b>レッグエクステンション</b><span class="sub">大腿直筋を中心に集中して効かせる</span></li>
-   <li><b>レッグプレス</b><span class="sub">高重量で四頭筋を鍛えられる</span></li>
+   <li><b>スクワット</b>や<b>レッグエクステンション</b>で鍛えられる。</li>
+   <li><b>レッグエクステンション</b>で<ruby>足首<rt>あしくび</rt></ruby>を伸ばして行うか曲げて行うかは、人によって<ruby>効<rt>き</rt></ruby>き方が<ruby>違<rt>ちが</rt></ruby>う。</li>
   </ul>
  </div>
 </div>
