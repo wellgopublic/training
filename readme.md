@@ -192,6 +192,27 @@ manual に書いていないことを出題すると、研修生は「習って�
 
 `onclick="event.stopPropagation()"` は必須。付けないとクリックしたときに WEEK のパネルが閉じてしまう。
 
+## 公開サイトの確認
+
+編集すると自動で commit + push される（`.claude/auto-push.ps1`）。ただし **push できていても GitHub Pages への反映は別**で、ビルドが数分遅れたり、まれに走らないことがある。
+
+「直したはずなのにサイトが古い」と思ったら、ブラウザを疑う前にこれを実行する：
+
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File .claude\check-live.ps1
+```
+
+公開されている全ページを1つずつ取得して手元のファイルと比べ、古いままのページを一覧で出す。改行コード（CRLF / LF）の違いは無視する。
+
+古いままだったときは：
+
+1. 5〜10分待ってもう一度実行する（ビルド待ちのことが多い）
+2. それでも古い → `https://github.com/wellgopublic/training/actions` で `pages-build-deployment` が失敗していないか見る
+3. ビルドが走っていない → 空コミットを push して促す
+   `git commit --allow-empty -m "rebuild"` → `git push origin HEAD`
+
+**ブラウザのスーパーリロードでは直らない。** サーバーが古いファイルを返しているので、手元でいくら再読み込みしても意味がない。
+
 ## デザイン
 
 全ページ共通。新しいページは既存ページの `<style>` をそのままコピーして使う。
