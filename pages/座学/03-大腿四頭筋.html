@@ -38,6 +38,16 @@
  .fig figcaption{padding:14px 8px 6px;text-align:center}
  .fig .ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;line-height:1.35}
  @media(max-width:620px){.imgwrap img{aspect-ratio:4/3}}
+ /* ―― 起始・停止・働き の開閉（初期状態は隠す）―― */
+ .detail{margin-bottom:16px}
+ .detail-head{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 20px;box-shadow:var(--shadow)}
+ .detail-head h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;flex:1;margin:0}
+ .detail-head h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
+ .detail .toggle{font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12px;color:var(--a-deep);background:var(--a-soft);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;flex:none;transition:border-color .2s ease,background .2s ease}
+ .detail .toggle:hover{border-color:var(--a);background:#fff}
+ .detail .dbody{margin-top:16px}
+ .detail.is-collapsed .dbody{display:none}
+ .detail .dbody > *:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -53,9 +63,17 @@
   <figure class="fig"><div class="imgwrap"><img src="../../Picture/筋肉/中間広筋.png" alt="中間広筋"></div><figcaption><div class="ttl"><ruby>中間広筋<rt>ちゅうかんこうきん</rt></ruby></div></figcaption></figure>
  </div>
 
+ <section class="detail is-collapsed">
+  <div class="detail-head">
+   <h2>起始・停止・働き</h2>
+   <button type="button" class="toggle" aria-expanded="false" aria-controls="detail-body" onclick="(function(b){var s=b.closest('.detail');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',String(!open));b.textContent=open?'見る':'隠す';})(this)">見る</button>
+  </div>
+  <div class="dbody" id="detail-body">
  <div class="card"><h2>起始（Origin）</h2><p class="ph">ここに起始を記載します。</p></div>
  <div class="card"><h2>停止（Insertion）</h2><p class="ph">ここに停止を記載します。</p></div>
  <div class="card"><h2>働き（Action）</h2><p class="ph">ここに主な働きを記載します。</p></div>
+  </div>
+ </section>
  <div class="card"><h2>種目</h2>
   <ul>
    <li><b>スクワット</b><span class="sub">四頭筋全体を鍛える基本種目</span></li>

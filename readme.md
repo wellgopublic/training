@@ -101,7 +101,29 @@ manual の PDF ページをそのまま貼っているので、見出しも説�
 
 `h1` の下の余白は `h1{margin-bottom:30px}` で取っている。
 
-### 6. 空のカードを置かない
+### 6. 起始・停止・働き は開閉式にする
+
+筋肉ページの `起始`・`停止`・`働き（Action）` は `<section class="detail is-collapsed">` で囲む。**初期状態は必ず閉じる**（`is-collapsed` を付けたまま置く）。
+
+覚えているか自分で試せるようにするため。ページを開いた時点で答えが見えていると練習にならない。
+
+```html
+<section class="detail is-collapsed">
+ <div class="detail-head">
+  <h2>起始・停止・働き</h2>
+  <button type="button" class="toggle" aria-expanded="false" aria-controls="detail-body"
+    onclick="(function(b){var s=b.closest('.detail');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',String(!open));b.textContent=open?'見る':'隠す';})(this)">見る</button>
+ </div>
+ <div class="dbody" id="detail-body">
+  <div class="keys">…起始・停止…</div>
+  <div class="card"><h2>働き（Action）</h2>…</div>
+ </div>
+</section>
+```
+
+`種目のポイント` や `トレーニングのポイント` のカードはこの中に入れない。always 表示のまま。
+
+### 7. 空のカードを置かない
 
 **中身が決まっていないカードは作らない。** 「ここに◯◯を記載します」のような仮の文だけのカードは置かない。
 
