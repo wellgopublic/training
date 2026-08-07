@@ -422,6 +422,19 @@
       margin-top: 8px;
     }
 
+    /* 座学ページから戻ってきたとき（復元）は、開いていた WEEK を
+       開いたまま出す。登場アニメも開くアニメも出さないので、
+       ページを離れる前とまったく同じ見た目になる */
+    .restored .week {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .restored.no-anim .muscle-panel {
+      transition: none;
+    }
+
     .day-plan {
       display: flex;
       flex-direction: column;
@@ -646,6 +659,16 @@
       }
     }
   </style>
+  <script>
+    // 前に開いていた WEEK があるかを、最初の描画より先に調べる。
+    // あるときだけアニメを止めて、閉じた状態が一瞬見えるのを防ぐ。
+    try {
+      var savedWeeks = sessionStorage.getItem('openWeeks');
+      if (savedWeeks && savedWeeks !== '[]') {
+        document.documentElement.classList.add('restored', 'no-anim');
+      }
+    } catch (e) { }
+  </script>
 </head>
 
 <body>
@@ -1092,20 +1115,64 @@
   </div>
 
   <script>
-    document.querySelectorAll('.week.expandable').forEach(function (w) {
-      var panel = w.querySelector('.muscle-panel');
-      w.addEventListener('click', function () {
-        // collapsing: re-clip so the slide-up animation hides the content
-        if (w.classList.contains('open')) panel.style.overflow = 'hidden';
-        w.classList.toggle('open');
-      });
-      // once fully open, let the hover pop-overs escape the panel bounds
-      panel.addEventListener('transitionend', function (e) {
-        if (e.propertyName === 'max-height' && w.classList.contains('open')) {
+    (function () {
+      var KEY = 'openWeeks';
+      var weeks = document.querySelectorAll('.week.expandable');
+      var wasOpen = [];
+      try {
+        var v = JSON.parse(sessionStorage.getItem(KEY));
+        if (Array.isArray(v)) wasOpen = v;
+      } catch (e) { }
+
+      function idOf(w) {
+        var n = w.querySelector('.wk-num b');
+        return n ? n.textContent.trim() : '';
+      }
+
+      // 開いている WEEK を覚えておく。座学・小テストから戻ってきたときに
+      // ここから開き直す（タブを閉じるまで覚えている）
+      function save() {
+        var ids = [];
+        weeks.forEach(function (w) {
+          if (w.classList.contains('open')) ids.push(idOf(w));
+        });
+        try { sessionStorage.setItem(KEY, JSON.stringify(ids)); } catch (e) { }
+      }
+
+      weeks.forEach(function (w) {
+        var panel = w.querySelector('.muscle-panel');
+
+        if (wasOpen.indexOf(idOf(w)) > -1) {
+          w.classList.add('open');
+          // アニメを止めているので transitionend は来ない。ここで直に開ける
           panel.style.overflow = 'visible';
         }
+
+        w.addEventListener('click', function () {
+          // collapsing: re-clip so the slide-up animation hides the content
+          if (w.classList.contains('open')) panel.style.overflow = 'hidden';
+          w.classList.toggle('open');
+          save();
+        });
+        // once fully open, let the hover pop-overs escape the panel bounds
+        panel.addEventListener('transitionend', function (e) {
+          if (e.propertyName === 'max-height' && w.classList.contains('open')) {
+            panel.style.overflow = 'visible';
+          }
+        });
       });
-    });
+
+      var html = document.documentElement;
+      if (html.classList.contains('restored')) {
+        var first = document.querySelector('.week.open');
+        // ブラウザがスクロール位置を戻さなかったときだけ、その WEEK まで送る
+        if (first && window.scrollY < 8) first.scrollIntoView({ block: 'center' });
+        // 描画が済んだらアニメを戻す。次にクリックしたときはまた滑らかに開く
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { html.classList.remove('no-anim'); });
+        });
+      }
+    })();
   </script>
 </body>
 
