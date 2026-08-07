@@ -660,14 +660,19 @@
     }
   </style>
   <script>
-    // 前に開いていた WEEK があるかを、最初の描画より先に調べる。
-    // あるときだけアニメを止めて、閉じた状態が一瞬見えるのを防ぐ。
-    try {
-      var savedWeeks = sessionStorage.getItem('openWeeks');
-      if (savedWeeks && savedWeeks !== '[]') {
-        document.documentElement.classList.add('restored', 'no-anim');
-      }
-    } catch (e) { }
+    // 前に開いていた WEEK を、最初の描画より先に調べておく。
+    // 見つかったときだけアニメを止めて、閉じた状態が一瞬見えるのを防ぐ。
+    //
+    // 置き場所は2つ。ファイルを直接開いた（file://）ときは sessionStorage が
+    // 使えないブラウザがあるので、そのときのために window.name にも書いてある。
+    // window.name は同じタブで移動するあいだ残るので、file:// でも戻ってこられる。
+    window.__openWeeks = (function () {
+      var raw = '';
+      try { raw = sessionStorage.getItem('openWeeks') || ''; } catch (e) { }
+      if (!raw && window.name.indexOf('openWeeks:') === 0) raw = window.name.slice(10);
+      if (raw && raw !== '[]') document.documentElement.classList.add('restored', 'no-anim');
+      return raw;
+    })();
   </script>
 </head>
 
@@ -1120,7 +1125,7 @@
       var weeks = document.querySelectorAll('.week.expandable');
       var wasOpen = [];
       try {
-        var v = JSON.parse(sessionStorage.getItem(KEY));
+        var v = JSON.parse(window.__openWeeks || '[]');
         if (Array.isArray(v)) wasOpen = v;
       } catch (e) { }
 
@@ -1136,7 +1141,10 @@
         weeks.forEach(function (w) {
           if (w.classList.contains('open')) ids.push(idOf(w));
         });
-        try { sessionStorage.setItem(KEY, JSON.stringify(ids)); } catch (e) { }
+        var raw = JSON.stringify(ids);
+        try { sessionStorage.setItem(KEY, raw); } catch (e) { }
+        // file:// 用の控え。head のスクリプトがこれも見る
+        try { window.name = KEY + ':' + raw; } catch (e) { }
       }
 
       weeks.forEach(function (w) {
