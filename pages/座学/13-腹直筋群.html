@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
- :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);--origin:#e5326b;--insert:#0e9bd6;}
  *{box-sizing:border-box;margin:0;padding:0}
  body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
  .wrap{max-width:760px;margin:0 auto}
@@ -48,6 +48,24 @@
  .detail .dbody{margin-top:16px}
  .detail.is-collapsed .dbody{display:none}
  .detail .dbody > *:last-child{margin-bottom:0}
+ /* 4つの筋肉それぞれの 起始・停止 */
+ .mname{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--a-deep);display:flex;align-items:center;gap:9px;margin:0 0 10px}
+ .mname::before{content:"";width:6px;height:18px;border-radius:3px;background:var(--a);flex:none}
+ .mgroup{margin-bottom:22px}
+ .mgroup:last-child{margin-bottom:0}
+ .keys{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
+ .kcard{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+ .kcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
+ .kcard.o::before{background:var(--origin)}.kcard.i::before{background:var(--insert)}
+ .kcard h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;display:flex;align-items:center;gap:9px;margin-bottom:12px}
+ .kcard h2 .tag{font-size:11px;font-weight:700;color:#fff;border-radius:999px;padding:3px 11px;font-family:"Outfit",sans-serif;letter-spacing:.08em}
+ .kcard.o h2 .tag{background:var(--origin)}.kcard.i h2 .tag{background:var(--insert)}
+ .kcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+ .kcard li{font-size:14px;font-weight:500;padding-left:18px;position:relative;color:var(--ink)}
+ .kcard li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%}
+ .kcard.o li::before{background:var(--origin)}.kcard.i li::before{background:var(--insert)}
+ .kcard li b{font-weight:700}
+ @media(max-width:620px){.keys{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -69,11 +87,109 @@
    <button type="button" class="toggle" aria-expanded="false" aria-controls="detail-body" onclick="(function(b){var s=b.closest('.detail');var open=!s.classList.contains('is-collapsed');s.classList.toggle('is-collapsed');b.setAttribute('aria-expanded',String(!open));b.textContent=open?'見る':'隠す';})(this)">見る</button>
   </div>
   <div class="dbody" id="detail-body">
- <div class="card"><h2>起始（Origin）</h2><p class="ph">ここに起始を記載します。</p></div>
- <div class="card"><h2>停止（Insertion）</h2><p class="ph">ここに停止を記載します。</p></div>
- <div class="card"><h2>働き（Action）</h2><p class="ph">ここに主な働きを記載します。</p></div>
+ <div class="mgroup">
+  <h3 class="mname"><ruby>腹直筋<rt>ふくちょくきん</rt></ruby></h3>
+  <div class="keys">
+   <div class="kcard o">
+    <h2><span class="tag">ORIGIN</span>起始</h2>
+    <ul><li><b><ruby>恥骨結合<rt>ちこつけつごう</rt></ruby></b></li></ul>
+   </div>
+   <div class="kcard i">
+    <h2><span class="tag">INSERTION</span>停止</h2>
+    <ul>
+     <li><b>第5〜7<ruby>肋骨<rt>ろっこつ</rt></ruby></b></li>
+     <li><b><ruby>剣状突起<rt>けんじょうとっき</rt></ruby></b></li>
+    </ul>
+   </div>
+  </div>
+  <div class="card"><h2>働き（Action）</h2>
+   <ul>
+    <li><ruby>体幹<rt>たいかん</rt></ruby><ruby>屈曲<rt>くっきょく</rt></ruby></li>
+    <li><ruby>骨盤<rt>こつばん</rt></ruby><ruby>後傾<rt>こうけい</rt></ruby></li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="mgroup">
+  <h3 class="mname"><ruby>外腹斜筋<rt>がいふくしゃきん</rt></ruby></h3>
+  <div class="keys">
+   <div class="kcard o">
+    <h2><span class="tag">ORIGIN</span>起始</h2>
+    <ul><li><b>第5〜12<ruby>肋骨<rt>ろっこつ</rt></ruby></b></li></ul>
+   </div>
+   <div class="kcard i">
+    <h2><span class="tag">INSERTION</span>停止</h2>
+    <ul>
+     <li><b><ruby>腸骨稜<rt>ちょうこつりょう</rt></ruby></b></li>
+     <li><b><ruby>腹直筋鞘<rt>ふくちょくきんしょう</rt></ruby></b></li>
+    </ul>
+   </div>
+  </div>
+  <div class="card"><h2>働き（Action）</h2>
+   <ul>
+    <li><b><ruby>両方<rt>りょうほう</rt></ruby></b>：<ruby>体幹<rt>たいかん</rt></ruby><ruby>屈曲<rt>くっきょく</rt></ruby></li>
+    <li><b><ruby>片方<rt>かたほう</rt></ruby></b>：<ruby>反対側<rt>はんたいがわ</rt></ruby>へ<ruby>回旋<rt>かいせん</rt></ruby>＋<ruby>屈曲<rt>くっきょく</rt></ruby></li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="mgroup">
+  <h3 class="mname"><ruby>内腹斜筋<rt>ないふくしゃきん</rt></ruby></h3>
+  <div class="keys">
+   <div class="kcard o">
+    <h2><span class="tag">ORIGIN</span>起始</h2>
+    <ul><li><b><ruby>腸骨稜<rt>ちょうこつりょう</rt></ruby></b></li></ul>
+   </div>
+   <div class="kcard i">
+    <h2><span class="tag">INSERTION</span>停止</h2>
+    <ul>
+     <li><b>第11〜12<ruby>肋骨<rt>ろっこつ</rt></ruby></b></li>
+     <li><b><ruby>腹直筋鞘<rt>ふくちょくきんしょう</rt></ruby></b></li>
+    </ul>
+   </div>
+  </div>
+  <div class="card"><h2>働き（Action）</h2>
+   <ul>
+    <li><b><ruby>両方<rt>りょうほう</rt></ruby></b>：<ruby>体幹<rt>たいかん</rt></ruby><ruby>屈曲<rt>くっきょく</rt></ruby></li>
+    <li><b><ruby>片方<rt>かたほう</rt></ruby></b>：<ruby>同側<rt>どうそく</rt></ruby>へ<ruby>回旋<rt>かいせん</rt></ruby>＋<ruby>屈曲<rt>くっきょく</rt></ruby></li>
+   </ul>
+  </div>
+ </div>
+
+ <div class="mgroup">
+  <h3 class="mname"><ruby>腹横筋<rt>ふくおうきん</rt></ruby></h3>
+  <div class="keys">
+   <div class="kcard o">
+    <h2><span class="tag">ORIGIN</span>起始</h2>
+    <ul>
+     <li><b><ruby>腸骨稜<rt>ちょうこつりょう</rt></ruby></b></li>
+     <li><b><ruby>下位肋骨<rt>かいろっこつ</rt></ruby></b></li>
+    </ul>
+   </div>
+   <div class="kcard i">
+    <h2><span class="tag">INSERTION</span>停止</h2>
+    <ul>
+     <li><b><ruby>腹直筋鞘<rt>ふくちょくきんしょう</rt></ruby></b></li>
+     <li><b><ruby>恥骨<rt>ちこつ</rt></ruby></b></li>
+    </ul>
+   </div>
+  </div>
+  <div class="card"><h2>働き（Action）</h2>
+   <ul>
+    <li><ruby>内臓<rt>ないぞう</rt></ruby>の<ruby>位置<rt>いち</rt></ruby>を<ruby>保<rt>たも</rt></ruby>つ</li>
+    <li><ruby>腹壁<rt>ふくへき</rt></ruby>の<ruby>緊張<rt>きんちょう</rt></ruby></li>
+   </ul>
+  </div>
+ </div>
   </div>
  </section>
+ <div class="card"><h2>ポイント</h2>
+  <ul>
+   <li>1<ruby>番<rt>ばん</rt></ruby><ruby>表面<rt>ひょうめん</rt></ruby>にあるのは<b><ruby>外腹斜筋<rt>がいふくしゃきん</rt></ruby></b>である。</li>
+   <li><ruby>間違<rt>まちが</rt></ruby>われやすいが、<b><ruby>腹直筋<rt>ふくちょくきん</rt></ruby></b>は<ruby>下<rt>した</rt></ruby>から<ruby>上<rt>うえ</rt></ruby>に<ruby>向<rt>む</rt></ruby>かっている。</li>
+   <li><b>フィードフォワード<ruby>機構<rt>きこう</rt></ruby></b>：<ruby>体<rt>からだ</rt></ruby>が<ruby>動<rt>うご</rt></ruby>くすこし<ruby>前<rt>まえ</rt></ruby>に<b><ruby>腹横筋<rt>ふくおうきん</rt></ruby></b>が<ruby>働<rt>はたら</rt></ruby>いていると<ruby>言<rt>い</rt></ruby>われている。</li>
+  </ul>
+ </div>
  <div class="card"><h2>種目</h2>
   <ul>
    <li><b>クランチ</b><span class="sub">腹直筋上部を鍛える</span></li>
