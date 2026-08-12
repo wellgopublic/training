@@ -26,6 +26,13 @@
  .btn{font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;border-radius:12px;padding:12px 26px;box-shadow:var(--shadow);transition:transform .15s ease}
  .btn:active{transform:translateY(1px)}
  .btn-ghost{background:var(--card);color:var(--a-deep);border:1.5px solid var(--line)}
+ /* 骨格の絵を指す問題 */
+ .q .body p.ask{font-size:15px;font-weight:700;color:var(--ink);font-style:normal;margin-bottom:14px}
+ .imgwrap{margin:0;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#2b2b2b;line-height:0}
+ .imgwrap img{width:100%;height:auto;display:block;cursor:zoom-in}
+ .imgwrap.missing{background:var(--a-soft);border-style:dashed;line-height:1.7;padding:34px 20px;text-align:center}
+ .imgwrap.missing::after{content:"骨格の 画像が ありません";font-size:13px;font-weight:700;color:var(--muted)}
+ rt{font-size:.55em;font-weight:500}
 </style>
 </head>
 <body>
@@ -34,11 +41,15 @@
  <div class="kicker">解剖① 筋肉・起始停止</div>
  <h1>大腿四頭筋<span class="badge">小テスト</span></h1>
 
- <div class="q"><div class="n">1</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">2</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">3</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">4</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">5</div><div class="body"><p>設問をここに記載します。</p></div></div>
+ <div class="q">
+  <div class="n">1</div>
+  <div class="body">
+   <p class="ask"><ruby>大腿四頭筋<rt>だいたいしとうきん</rt></ruby>の <ruby>起始<rt>きし</rt></ruby>と <ruby>停止<rt>ていし</rt></ruby>は どこですか。<br>下の 絵の 上を 指して ください。</p>
+   <figure class="imgwrap"><img src="../../Picture/骨格/脚-前.png" alt="骨格 脚 前 — 大腿四頭筋の起始・停止を指す練習"
+     onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
+  </div>
+ </div>
 </div>
+<script src="../../assets/zoom.js" defer></script>
 </body>
 </html>
