@@ -12,10 +12,10 @@
              pencil button = draw on top of the picture
              Esc or backdrop or X = close
 
-   Draw mode: pick a colour (起始 / 停止 / メモ) and a tool
-             (ペン = line, ぬる = highlighter, 消す = eraser),
-             then drag on the picture. Shift+drag still pans and
-             two fingers still pinch / move, so you can zoom in
+   Draw mode: the round button opens a palette - eight colours and
+             a slider for the line width. Then drag on the picture
+             with ペン (draw) or 消す (erase). Shift+drag still pans
+             and two fingers still pinch / move, so you can zoom in
              on a landmark and keep drawing.
    Strokes are kept per image while the tab is open, so closing
    and re-opening the same picture brings the marks back.
@@ -42,12 +42,12 @@
 
   var HINT_VIEW = 'スクロールで拡大　ドラッグで移動　Esc で閉じる';
 
-  /* 起始・停止の色は筋肉ページの --origin / --insert と同じ */
-  var COLORS = [
-    { c: '#e5326b', label: '起始' },
-    { c: '#0e9bd6', label: '停止' },
-    { c: '#f5b301', label: 'メモ' }
+  /* 色えらび。はじめの2つは筋肉ページの --origin / --insert と同じ色 */
+  var SWATCHES = [
+    '#e5326b', '#0e9bd6', '#22c55e', '#f5b301',
+    '#a855f7', '#ff6a00', '#ffffff', '#111111'
   ];
+  var WMIN = 1, WMAX = 20, WDEF = 3;   /* 線の太さ。絵の大きさに合わせて倍される */
 
   /* ---------- styles ---------- */
   var CSS = [
@@ -91,32 +91,55 @@
     '.zv-tools button{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:700;',
     'border:0;cursor:pointer;line-height:1;padding:0;',
     'transition:box-shadow .15s ease,background .15s ease}',
-    '.zv-c{width:36px;height:36px;border-radius:50%;color:#fff;font-size:11px;',
-    'box-shadow:inset 0 0 0 2px rgba(255,255,255,.9)}',
-    '.zv-c.on{box-shadow:inset 0 0 0 2px #fff,0 0 0 3px #004aad}',
-    '.zv-t,.zv-act{height:36px;padding:0 12px;border-radius:999px;background:rgba(0,74,173,.08);',
-    'color:#004aad;font-size:12px}',
-    '.zv-t.on{background:#004aad;color:#fff}',
-    '.zv-act{font-size:15px}',
+    /* いまの色。押すと下のパレットがひらく */
+    '.zv-color{width:36px;height:36px;border-radius:50%;background:rgba(0,74,173,.08);',
+    'display:flex;align-items:center;justify-content:center;flex:none}',
+    '.zv-color.on{background:#004aad}',
+    '.zv-color i{display:block;width:20px;height:20px;border-radius:50%;',
+    'box-shadow:inset 0 0 0 2px rgba(255,255,255,.92),0 0 0 1px rgba(0,0,0,.2)}',
+    /* .zv-tools button より弱いと padding:0 に負けるので、同じ強さで書く */
+    '.zv-tools .zv-t,.zv-tools .zv-act{height:36px;padding:0 14px;border-radius:999px;',
+    'background:rgba(0,74,173,.08);color:#004aad;font-size:12px;white-space:nowrap}',
+    '.zv-tools .zv-t.on{background:#004aad;color:#fff}',
+    '.zv-tools .zv-act{font-size:15px}',
     '.zv-sep{width:1px;height:22px;background:rgba(0,74,173,.18);margin:0 3px;flex:none}',
+    /* ---- 色と太さのパレット ---- */
+    '.zv-pop{display:none;position:absolute;left:50%;bottom:calc(100% + 9px);',
+    'transform:translateX(-50%);background:#fff;border-radius:18px;padding:11px;',
+    'box-shadow:0 16px 38px -12px rgba(0,0,0,.6)}',
+    '.zv-pop.on{display:block}',
+    '.zv-sw{display:grid;grid-template-columns:repeat(4,42px);gap:9px;justify-content:center}',
+    '.zv-sw button{width:42px;height:42px;border-radius:50%;',
+    'box-shadow:inset 0 0 0 1px rgba(0,0,0,.22)}',
+    '.zv-sw button.on{box-shadow:inset 0 0 0 2px #fff,0 0 0 3px #004aad}',
+    '.zv-size{display:flex;align-items:center;gap:11px;margin-top:11px;padding-top:11px;',
+    'border-top:1px solid rgba(0,74,173,.14)}',
+    '.zv-prev{width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center;',
+    'background:rgba(0,74,173,.07);border-radius:12px}',
+    '.zv-prev i{display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.2)}',
+    '.zv-size input{flex:1;min-width:120px;accent-color:#004aad;height:38px}',
     '.zv-hint{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);color:rgba(255,255,255,.8);',
     'font-family:"Noto Sans JP",sans-serif;font-size:11.5px;white-space:nowrap;pointer-events:none;',
     'background:rgba(4,16,34,.72);padding:5px 15px;border-radius:999px;transition:opacity .3s ease}',
     '.zv.pen .zv-hint{display:none}',
     '@media(max-width:620px){.zv-cap{font-size:13px;padding:14px 58px}.zv-hint{display:none}',
     '.zv-tools{bottom:64px;gap:4px;padding:5px 6px}',
-    '.zv-c{width:32px;height:32px;font-size:10px}',
-    '.zv-t,.zv-act{height:32px;padding:0 9px;font-size:11px}}'
+    '.zv-color{width:32px;height:32px}.zv-color i{width:18px;height:18px}',
+    '.zv-tools .zv-t,.zv-tools .zv-act{height:32px;padding:0 11px;font-size:11px}',
+    '.zv-sw{grid-template-columns:repeat(4,38px);gap:8px}',
+    '.zv-sw button{width:38px;height:38px}.zv-size input{min-width:96px}}'
   ].join('');
 
   /* ---------- overlay ---------- */
   var v, stage, frame, img, cvs, ctx, cap, pct, bIn, bOut, bReset, bPen, hint, tools;
+  var pop, dot, prev, range, bColor;
   var scale = 1, tx = 0, ty = 0, opener = null, hintTimer = null;
 
   /* ---------- 書きこみの状態 ---------- */
   var penOn = false;
-  var tool = 'pen';                 /* pen / hl / er */
-  var color = COLORS[0].c;
+  var tool = 'pen';                 /* pen / er */
+  var color = SWATCHES[0];
+  var penW = WDEF;
   var strokes = [];                 /* いま開いている絵の線 */
   var store = {};                   /* src ごとに線をおぼえておく */
   var cur = null;                   /* 描いている途中の線 */
@@ -140,11 +163,10 @@
     var MINUS = '−', RESET = '↺', TIMES = '×', UNDO = '↶';
 
     var swatches = '', i;
-    for (i = 0; i < COLORS.length; i++) {
+    for (i = 0; i < SWATCHES.length; i++) {
       swatches +=
-        '<button type="button" class="zv-c' + (i === 0 ? ' on' : '') + '" data-c="' + COLORS[i].c +
-        '" style="background:' + COLORS[i].c + '" aria-label="' + COLORS[i].label + 'の色">' +
-        COLORS[i].label + '</button>';
+        '<button type="button" class="zv-s' + (i === 0 ? ' on' : '') + '" data-c="' + SWATCHES[i] +
+        '" style="background:' + SWATCHES[i] + '" aria-label="色 ' + SWATCHES[i] + '"></button>';
     }
 
     v.innerHTML =
@@ -155,14 +177,20 @@
       '<div class="zv-cap"></div>' +
       '<div class="zv-hint">' + HINT_VIEW + '</div>' +
       '<div class="zv-tools">' +
-        swatches +
+        '<button type="button" class="zv-color" aria-label="色と太さをえらぶ" aria-expanded="false">' +
+          '<i></i></button>' +
         '<i class="zv-sep"></i>' +
         '<button type="button" class="zv-t on" data-t="pen">ペン</button>' +
-        '<button type="button" class="zv-t" data-t="hl">ぬる</button>' +
         '<button type="button" class="zv-t" data-t="er">消す</button>' +
         '<i class="zv-sep"></i>' +
         '<button type="button" class="zv-act zv-undo" aria-label="ひとつ戻す">' + UNDO + '</button>' +
         '<button type="button" class="zv-act zv-clear">全消し</button>' +
+        '<div class="zv-pop">' +
+          '<div class="zv-sw">' + swatches + '</div>' +
+          '<div class="zv-size"><span class="zv-prev"><i></i></span>' +
+            '<input type="range" min="' + WMIN + '" max="' + WMAX + '" step="1" value="' + WDEF +
+            '" aria-label="線の太さ"></div>' +
+        '</div>' +
       '</div>' +
       '<div class="zv-bar">' +
         '<button class="zv-out" type="button" aria-label="zoom out">' + MINUS + '</button>' +
@@ -183,6 +211,11 @@
     pct = v.querySelector('.zv-pct');
     hint = v.querySelector('.zv-hint');
     tools = v.querySelector('.zv-tools');
+    pop = v.querySelector('.zv-pop');
+    bColor = v.querySelector('.zv-color');
+    dot = bColor.querySelector('i');
+    prev = v.querySelector('.zv-prev i');
+    range = v.querySelector('.zv-size input');
     bIn = v.querySelector('.zv-in');
     bOut = v.querySelector('.zv-out');
     bReset = v.querySelector('.zv-reset');
@@ -197,10 +230,13 @@
     tools.addEventListener('click', function (e) {
       var b = e.target.closest ? e.target.closest('button') : null;
       if (!b) return;
-      if (b.classList.contains('zv-c')) {
+      if (b.classList.contains('zv-color')) {
+        setPop(!pop.classList.contains('on'));
+      } else if (b.classList.contains('zv-s')) {
         color = b.getAttribute('data-c');
-        pick(tools.querySelectorAll('.zv-c'), b);
+        pick(pop.querySelectorAll('.zv-s'), b);
         if (tool === 'er') setTool('pen');     /* 色を選んだら消しゴムは解除 */
+        showColor();
       } else if (b.classList.contains('zv-t')) {
         setTool(b.getAttribute('data-t'));
       } else if (b.classList.contains('zv-undo')) {
@@ -208,6 +244,11 @@
       } else if (b.classList.contains('zv-clear')) {
         strokes.length = 0; redraw();
       }
+    });
+
+    range.addEventListener('input', function () {
+      penW = Math.max(WMIN, Math.min(WMAX, parseInt(range.value, 10) || WDEF));
+      showColor();
     });
 
     /* click the empty area (not the picture) to close.
@@ -230,6 +271,8 @@
     stage.addEventListener('pointerup', onUp);
     stage.addEventListener('pointercancel', onUp);
     document.addEventListener('keydown', onKey);
+
+    showColor();
   }
 
   function pick(list, on) {
@@ -288,12 +331,29 @@
     v.classList.toggle('pen', penOn);
     bPen.classList.toggle('on', penOn);
     bPen.setAttribute('aria-pressed', String(penOn));
+    if (!penOn) setPop(false);
+    showColor();
     apply();
   }
 
   function setTool(t) {
     tool = t;
     pick(tools.querySelectorAll('.zv-t'), tools.querySelector('.zv-t[data-t="' + t + '"]'));
+  }
+
+  function setPop(on) {
+    pop.classList.toggle('on', !!on);
+    bColor.classList.toggle('on', !!on);
+    bColor.setAttribute('aria-expanded', String(!!on));
+  }
+
+  /* ボタンの丸と、パレットの中の点に、いまの色と太さを出す */
+  function showColor() {
+    dot.style.background = color;
+    var d = Math.max(4, Math.min(30, Math.round(penW * 1.5)));
+    prev.style.width = d + 'px';
+    prev.style.height = d + 'px';
+    prev.style.background = color;
   }
 
   /* canvas は絵の元の大きさで持つ。拡大しても線がギザギザにならない */
@@ -309,9 +369,9 @@
   }
 
   function widthOf(t) {
-    if (t === 'hl') return 15 * unit;
-    if (t === 'er') return 18 * unit;
-    return 3.2 * unit;
+    /* 消しゴムは細すぎると使いにくいので下限をつける */
+    if (t === 'er') return Math.max(penW, 6) * unit;
+    return penW * unit;
   }
 
   /* 画面の座標を canvas の座標になおす。
@@ -328,7 +388,7 @@
   function startStroke(e) {
     var p = toCanvas(e);
     if (!p) return null;
-    var s = { t: tool, c: color, w: widthOf(tool), a: tool === 'hl' ? 0.35 : 1, p: [p] };
+    var s = { t: tool, c: color, w: widthOf(tool), a: 1, p: [p] };
     strokes.push(s);
     queueRedraw();
     return s;
@@ -377,7 +437,7 @@
       g.fillStyle = '#000';
     } else {
       g.globalCompositeOperation = 'source-over';
-      g.globalAlpha = s.a;
+      g.globalAlpha = (s.a == null ? 1 : s.a);
       g.strokeStyle = s.c;
       g.fillStyle = s.c;
     }
@@ -423,6 +483,7 @@
          Shift を押しながらなら今までどおり移動 */
       if (first && penOn && !e.shiftKey && e.target === cvs) {
         e.preventDefault();
+        setPop(false);                 /* 書きはじめたらパレットは閉じる */
         cur = startStroke(e);
         if (cur) {
           capture(e.pointerId);
