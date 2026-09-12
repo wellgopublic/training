@@ -51,31 +51,45 @@
       margin: 0 auto
     }
 
-    /* ---------- Header ---------- */
+    /* ---------- Header ----------
+       文字とロゴを横ならびにする。position:absolute で置くと
+       header の高さに入らないので、中身を減らしたときに下へはみ出す */
     header {
       margin-bottom: 40px;
-      position: relative
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .head-text {
+      flex: 1;
+      min-width: 0;
     }
 
     .logo {
-      position: absolute;
-      top: 80px;
-      right: 20px;
-      width: 200px;
-      height: 200px;
-      border-radius: 28px;
+      flex: none;
+      width: clamp(120px, 17vw, 180px);
+      height: clamp(120px, 17vw, 180px);
+      border-radius: 26px;
       object-fit: cover;
       box-shadow: var(--shadow);
     }
 
+    /* せまい画面では上下にならべる。ロゴが先（column-reverse）。
+       align-items は stretch に戻すこと。上の center のままだと
+       たてならびのとき文字のかたまりが中身の幅までちぢんでしまう */
     @media (max-width:760px) {
+      header {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 18px;
+      }
+
       .logo {
-        position: static;
-        display: block;
+        align-self: flex-start;
         width: 96px;
         height: 96px;
         border-radius: 18px;
-        margin-bottom: 16px;
       }
     }
 
@@ -674,11 +688,13 @@
   <div class="wrap">
 
     <header>
+      <div class="head-text">
+        <div class="kicker">Personal Trainer 研修プログラム</div>
+        <h1>WELLGO研修プログラム
+          <span class="en">WELLGO TRAINER ONBOARDING SCHEDULE</span>
+        </h1>
+      </div>
       <img src="image-blue.png" alt="WELLGO" class="logo">
-      <div class="kicker">Personal Trainer 研修プログラム</div>
-      <h1>WELLGO研修プログラム
-        <span class="en">WELLGO TRAINER ONBOARDING SCHEDULE</span>
-      </h1>
     </header>
 
     <!-- ============ PHASE A ============ -->
