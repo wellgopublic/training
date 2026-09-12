@@ -488,11 +488,31 @@
       color: var(--ink);
       cursor: default;
       transition: background .2s ease, transform .2s ease;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
-    .m:hover {
+    /* 座学・小テストを選ぶポップが付いている項目はタップできる */
+    .m.has-pop {
+      cursor: pointer;
+    }
+
+    .m.is-open {
       background: rgba(0, 74, 173, .14);
-      transform: translateY(-2px);
+    }
+
+    /* hover はマウスのある端末だけに効かせる。
+       iPad などのタッチだとタップ＝hover になり、指を離しても状態が残る */
+    @media (hover:hover) and (pointer:fine) {
+      .m:hover {
+        background: rgba(0, 74, 173, .14);
+        transform: translateY(-2px);
+      }
+
+      .m.soon:hover {
+        background: transparent;
+        transform: none;
+      }
     }
 
     .m b {
@@ -520,11 +540,6 @@
       background: transparent;
       border: 1.5px dashed var(--line);
       color: var(--muted);
-    }
-
-    .m.soon:hover {
-      background: transparent;
-      transform: none;
     }
 
     .m.soon b {
@@ -585,7 +600,18 @@
       height: 14px;
     }
 
-    .m:hover .m-pop {
+    /* マウス: ホバーで出す */
+    @media (hover:hover) and (pointer:fine) {
+      .m:hover .m-pop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* タッチ（iPad・スマホ）: タップで出す。もう一度タップで閉じる */
+    .m.is-open .m-pop {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
@@ -1181,6 +1207,42 @@
           requestAnimationFrame(function () { html.classList.remove('no-anim'); });
         });
       }
+    })();
+
+    // 座学 / 小テスト のポップをタップで開く（iPad・スマホ用）
+    // マウスの端末は CSS の hover で開くので、ここは触らなくても動く
+    (function () {
+      var canHover = !!(window.matchMedia &&
+        window.matchMedia('(hover:hover) and (pointer:fine)').matches);
+      var chips = [];
+      document.querySelectorAll('.m > .m-pop').forEach(function (pop) {
+        var chip = pop.parentNode;
+        chip.classList.add('has-pop');
+        chips.push(chip);
+
+        chip.addEventListener('click', function (e) {
+          // これが無いと WEEK のパネルが閉じてしまい、
+          // ポップが出た瞬間に消えて押せなくなる
+          e.stopPropagation();
+          // ポップの中（座学・小テスト）はそのままリンクを開かせる
+          if (e.target.closest && e.target.closest('.pop-item')) return;
+          // マウスの端末は hover で開くので、クリックでは開閉しない
+          if (canHover) return;
+          var open = chip.classList.contains('is-open');
+          closeAll();
+          if (!open) chip.classList.add('is-open');
+        });
+      });
+
+      function closeAll() {
+        chips.forEach(function (c) { c.classList.remove('is-open'); });
+      }
+
+      // ほかの場所を押したら閉じる
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
+      });
     })();
   </script>
 </body>
