@@ -518,6 +518,21 @@
       text-decoration: none;
     }
 
+    /* 座学ページで「完了」にした項目。右はしにチェックが付く */
+    .m.is-done {
+      box-shadow: inset 0 0 0 1.5px rgba(0, 74, 173, .38);
+    }
+
+    .m.is-done::after {
+      content: "";
+      flex: none;
+      width: 18px;
+      height: 18px;
+      margin-right: -3px;
+      border-radius: 50%;
+      background: var(--a) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 12px no-repeat;
+    }
+
     /* まだページを作っていない項目 */
     .m.soon {
       background: transparent;
@@ -1240,6 +1255,53 @@
       document.addEventListener('click', closeAll);
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAll();
+      });
+    })();
+
+    // 座学ページで「完了」にした項目にチェックを付ける。
+    // 完了は assets/comment.js が同じ名前（wellgo-training:done）で保存している。
+    // 中身は { ファイル名: { at: 'YYYY-MM-DD' } }
+    (function () {
+      var KEY = 'wellgo-training:done';
+
+      function read() {
+        try {
+          var v = JSON.parse(localStorage.getItem(KEY) || '{}');
+          return (v && typeof v === 'object' && !Array.isArray(v)) ? v : {};
+        } catch (e) { return {}; }
+      }
+
+      // pages/座学/05-広背筋.html → 05-広背筋（comment.js と同じ名前の作り方）
+      function idOf(href) {
+        var seg = href.split('#')[0].split('?')[0].split('/').pop();
+        try { seg = decodeURIComponent(seg); } catch (e) { }
+        return seg.replace(/\.html?$/i, '');
+      }
+
+      // 項目と、その座学ページの名前を組にしておく。
+      // ポップ付きの項目はポップの中の「座学」リンク、直接リンクの項目はそのリンクを見る
+      var pairs = [];
+      document.querySelectorAll('.m').forEach(function (m) {
+        var a = m.tagName === 'A' ? m : m.querySelector('a.pop-item');
+        var href = a && a.getAttribute('href');
+        if (!href || href.indexOf('座学/') < 0) return;
+        pairs.push({ m: m, id: idOf(href) });
+      });
+
+      function apply() {
+        var d = read();
+        pairs.forEach(function (p) {
+          p.m.classList.toggle('is-done', !!d[p.id]);
+        });
+      }
+
+      apply();
+      // 座学ページから「戻る」で帰ってきたとき。iPad の Safari は前の画面を
+      // そのまま出す（スクリプトを走らせなおさない）ので、ここで読みなおす
+      window.addEventListener('pageshow', apply);
+      window.addEventListener('storage', function (e) { if (e.key === KEY) apply(); });
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) apply();
       });
     })();
   </script>

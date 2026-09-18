@@ -1,20 +1,25 @@
 /* ============================================================
-   comment.js - 座学ページの「コメント」ボタンとポップアップ
+   comment.js - 座学ページの「コメント」と「完了」ボタン
 
    Add this one line before </body> on every 座学 page:
      <script src="../../assets/comment.js" defer></script>
 
-   It puts a コメント button to the right of the
+   It puts two buttons to the right of the
    「← 研修タイムテーブルに戻る」 link and injects its own CSS,
-   so pages need nothing else.
+   so pages need nothing else:
 
-   The pop-up lets the instructor pick a date, write a comment
-   and sign their name. Comments belong to ONE page only: the key
-   is the page's file name, so スクワット's comments never show
-   on ダンベルプレス.
+   コメント  opens a pop-up to pick a date, write a comment and
+             sign the instructor's name. Comments belong to ONE
+             page only: the key is the page's file name, so
+             スクワット's comments never show on ダンベルプレス.
+
+   完了      a check box. Tick it when the trainee has learned the
+             topic and passed its test. 研修タイムテーブル reads the
+             same key (wellgo-training:done) and puts a check mark
+             on every chip that links to this page.
 
    Storage: localStorage of this browser. Nothing is sent to a
-   server, so comments stay on the device they were written on.
+   server, so both stay on the device they were made on.
    Keys start with "wellgo-training:" because every repo under
    wellgopublic.github.io shares one localStorage.
 
@@ -30,6 +35,9 @@
   var PAGE = pageId();
   var KEY = PREFIX + 'comments:' + PAGE;
   var NAME_KEY = PREFIX + 'comment-name';     /* 最後に書いた講師名 */
+  /* 完了したページ。{ ファイル名: { at: 'YYYY-MM-DD' } }。
+     研修タイムテーブル.html も同じ名前で読むので、変えるときは両方直す */
+  var DONE_KEY = PREFIX + 'done';
   var WD = ['日', '月', '火', '水', '木', '金', '土'];
 
   var store = storage();
@@ -41,7 +49,7 @@
   var scrollLock = '';
 
   var btn, badge, modal, box, body, form, fDate, fName, fText, bSave, bCancel,
-      msg, list, listCount, empty, title;
+      msg, list, listCount, empty, title, done;
 
   /* ---------- styles ---------- */
   var CSS = [
@@ -56,6 +64,22 @@
     '.cm-open svg{width:15px;height:15px;flex:none}',
     '.cm-badge{font-family:"Outfit",sans-serif;font-weight:700;font-size:11px;line-height:1;color:#fff;',
     'background:var(--a,#004aad);border-radius:999px;padding:3px 7px;min-width:20px;text-align:center}',
+    /* コメントと完了はひとまとまり。せまい画面では2つそろって次の行へ下りる */
+    '.cm-grp{display:flex;align-items:center;gap:8px}',
+    '.cm-done{display:inline-flex;align-items:center;gap:7px;font-family:"Noto Sans JP",sans-serif;',
+    'font-size:13px;font-weight:700;line-height:1.7;color:var(--a-deep,#004aad);',
+    'background:var(--card,#fff);border:1.5px solid var(--line,rgba(0,74,173,.16));border-radius:999px;',
+    'padding:8px 16px;box-shadow:var(--shadow,0 18px 40px -28px rgba(0,74,173,.28));cursor:pointer;',
+    'transition:border-color .2s ease,background .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}',
+    '.cm-done:hover{border-color:var(--a,#004aad)}',
+    '.cm-done .cm-box2{width:17px;height:17px;border-radius:5px;border:2px solid currentColor;',
+    'display:flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;',
+    'transition:background .2s ease,border-color .2s ease}',
+    '.cm-done .cm-box2 svg{width:12px;height:12px;opacity:0;transition:opacity .15s ease}',
+    '.cm-done.on{background:#004aad;border-color:#004aad;color:#fff}',
+    '.cm-done.on .cm-box2{background:#fff;border-color:#fff;color:#004aad}',
+    '.cm-done.on .cm-box2 svg{opacity:1}',
+    '.cm-done:disabled{opacity:.45;cursor:default}',
 
     '.cm-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9000;display:flex;',
     'align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .18s ease}',
@@ -146,8 +170,8 @@
 
     /* スマホでも「戻る」の右にならぶように、2つのボタンを少し小さくする */
     '@media (max-width:480px){',
-    '.cm-bar{gap:6px}',
-    '.cm-bar .back,.cm-open{font-size:12px;padding:7px 12px;gap:5px}',
+    '.cm-bar,.cm-grp{gap:6px}',
+    '.cm-bar .back,.cm-open,.cm-done{font-size:12px;padding:7px 12px;gap:5px}',
     '.cm-open svg{width:14px;height:14px}',
     '.cm-badge{font-size:10px;padding:3px 6px;min-width:18px}',
     '}',
@@ -168,6 +192,11 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
     '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg>';
+
+  var CHECK =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 
   /* ---------- page / storage ---------- */
   function pageId() {
@@ -265,8 +294,18 @@
     btn.className = 'cm-open';
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.innerHTML = BUBBLE + '<span>コメント</span><span class="cm-badge" hidden></span>';
-    bar.appendChild(btn);
     badge = btn.querySelector('.cm-badge');
+
+    done = document.createElement('button');
+    done.type = 'button';
+    done.className = 'cm-done';
+    done.innerHTML = '<span class="cm-box2">' + CHECK + '</span><span>完了</span>';
+
+    var grp = document.createElement('div');
+    grp.className = 'cm-grp';
+    grp.appendChild(btn);
+    grp.appendChild(done);
+    bar.appendChild(grp);
 
     modal = document.createElement('div');
     modal.className = 'cm-modal';
@@ -328,6 +367,7 @@
     }
 
     btn.addEventListener('click', open);
+    done.addEventListener('click', toggleDone);
     modal.querySelector('.cm-x').addEventListener('click', close);
     modal.querySelector('.cm-back').addEventListener('click', close);
     form.addEventListener('submit', onSubmit);
@@ -343,10 +383,47 @@
     /* 別のタブで書いたときも数をそろえる */
     window.addEventListener('storage', function (e) {
       if (e.key === KEY) { items = load(); render(); }
+      if (e.key === DONE_KEY) renderDone();
     });
 
     render();
+    renderDone();
     return true;
+  }
+
+  /* ---------- 完了チェック ---------- */
+  function readDone() {
+    if (!store) return {};
+    try {
+      var v = JSON.parse(store.getItem(DONE_KEY) || '{}');
+      return (v && typeof v === 'object' && !Array.isArray(v)) ? v : {};
+    } catch (e) { return {}; }
+  }
+
+  function renderDone() {
+    var d = readDone()[PAGE];
+    var on = !!d;
+    done.classList.toggle('on', on);
+    done.setAttribute('aria-pressed', String(on));
+    done.title = on ? fmtDate(d.at) + ' に完了' : '学習とテストが終わったらチェック';
+    done.disabled = !store;
+  }
+
+  function toggleDone() {
+    if (!store) return;
+    var all = readDone();
+    if (all[PAGE]) {
+      /* うっかり外さないように確認する */
+      if (!window.confirm('完了のチェックを外しますか？')) return;
+      delete all[PAGE];
+    } else {
+      all[PAGE] = { at: today() };
+    }
+    try {
+      if (Object.keys(all).length) store.setItem(DONE_KEY, JSON.stringify(all));
+      else store.removeItem(DONE_KEY);
+    } catch (e) { return; }
+    renderDone();
   }
 
   /* ---------- render ---------- */
