@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生理学・運動学テスト ｜テスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+ :root{--paper:#ffffff;--card:#FFFFFF;--ink:#004aad;--muted:rgba(0, 74, 173, .62);--line:rgba(0, 74, 173, .16);--a:#004aad;--a-soft:rgba(0, 74, 173, .08);--a-deep:#004aad;--shadow:0 18px 40px -28px rgba(0, 74, 173, .28);}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:"Noto Sans JP",sans-serif;background:radial-gradient(circle at 12% 8%,rgba(0, 74, 173, .05),transparent 38%),var(--paper);color:var(--ink);line-height:1.7;padding:40px 22px 70px;-webkit-font-smoothing:antialiased;}
+ .wrap{max-width:760px;margin:0 auto}
+ .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--a-deep);text-decoration:none;margin-bottom:26px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;box-shadow:var(--shadow);transition:border-color .2s ease}
+ .back:hover{border-color:var(--a)}
+ .kicker{font-family:"Outfit",sans-serif;font-weight:700;letter-spacing:.28em;font-size:11px;color:var(--a-deep);text-transform:uppercase;margin-bottom:12px}
+ h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
+ h1{margin-bottom:30px}
+ .q{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:20px 24px;box-shadow:var(--shadow);margin-bottom:14px;display:flex;gap:14px;align-items:flex-start}
+ .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+ .q .body{flex:1}
+ .q .body p.ask{font-size:15px;font-weight:700;color:var(--ink);font-style:normal}
+ rt{font-size:.55em;font-weight:500}
+ /* 大きな見出し（DAY ごとの区分）。この下に .q のカードをならべる */
+ .sec{margin-bottom:34px}
+ .sec:last-child{margin-bottom:0}
+ .sec-h{display:flex;align-items:center;gap:13px;padding-bottom:13px;margin-bottom:16px;border-bottom:2px solid var(--line)}
+ .sec-h .sn{font-family:"Outfit",sans-serif;font-weight:900;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none;box-shadow:var(--shadow)}
+ /* 中は DAY タグと題名の2つだけ。題名は1つの span にまとめないと、ふりがなごとに間があく */
+ .sec-h h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:21px;line-height:1.35;display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
+ .sec-h h2 .tag{font-family:"Outfit",sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--a-deep);background:var(--a-soft);border:1.5px solid var(--line);border-radius:999px;padding:2px 11px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <a class="back" href="../../研修タイムテーブル.html">← 研修タイムテーブルに戻る</a>
+ <div class="kicker">WEEK 02 ／ DAY 5</div>
+ <h1>生理学・運動学テスト</h1>
+
+ <section class="sec">
+  <div class="sec-h">
+   <span class="sn">1</span>
+   <h2><span class="tag">DAY 1</span><span>エネルギー<ruby>代謝<rt>たいしゃ</rt></ruby></span></h2>
+  </div>
+  <div class="q"><div class="n">1</div><div class="body">
+   <p class="ask"><ruby>身体<rt>からだ</rt></ruby>は<ruby>何<rt>なに</rt></ruby>を<ruby>使<rt>つか</rt></ruby>って<ruby>動<rt>うご</rt></ruby>きますか。</p>
+  </div></div>
+  <div class="q"><div class="n">2</div><div class="body">
+   <p class="ask"><ruby>筋肉<rt>きんにく</rt></ruby>の<ruby>中<rt>なか</rt></ruby>にあるATPは、<ruby>何秒<rt>なんびょう</rt></ruby>くらいでなくなりますか。</p>
+  </div></div>
+  <div class="q"><div class="n">3</div><div class="body">
+   <p class="ask">ATPを<ruby>作<rt>つく</rt></ruby>る<ruby>工場<rt>こうじょう</rt></ruby>は3つあります。<ruby>名前<rt>なまえ</rt></ruby>を<ruby>言<rt>い</rt></ruby>ってください。</p>
+  </div></div>
+  <div class="q"><div class="n">4</div><div class="body">
+   <p class="ask">ベンチプレス1RM・30<ruby>秒<rt>びょう</rt></ruby>スクワット・ウォーキングは、それぞれ<ruby>主<rt>おも</rt></ruby>にどの<ruby>供給系<rt>きょうきゅうけい</rt></ruby>を<ruby>使<rt>つか</rt></ruby>いますか。</p>
+  </div></div>
+  <div class="q"><div class="n">5</div><div class="body">
+   <p class="ask">3つの<ruby>供給系<rt>きょうきゅうけい</rt></ruby>は、<ruby>時間<rt>じかん</rt></ruby>が<ruby>来<rt>き</rt></ruby>たら1つずつ<ruby>交代<rt>こうたい</rt></ruby>しますか。</p>
+  </div></div>
+  <div class="q"><div class="n">6</div><div class="body">
+   <p class="ask">セットの<ruby>間<rt>あいだ</rt></ruby>に<ruby>休憩<rt>きゅうけい</rt></ruby>するのは、<ruby>何<rt>なに</rt></ruby>を<ruby>回復<rt>かいふく</rt></ruby>させるためですか。</p>
+  </div></div>
+ </section>
+
+ <section class="sec">
+  <div class="sec-h">
+   <span class="sn">2</span>
+   <h2><span class="tag">DAY 2</span><span><ruby>筋肉<rt>きんにく</rt></ruby>と<ruby>神経<rt>しんけい</rt></ruby></span></h2>
+  </div>
+  <div class="q"><div class="n">1</div><div class="body">
+   <p class="ask"><ruby>筋肉<rt>きんにく</rt></ruby>からサルコメアまで、どんな<ruby>順番<rt>じゅんばん</rt></ruby>で<ruby>細<rt>こま</rt></ruby>かくなりますか。</p>
+  </div></div>
+  <div class="q"><div class="n">2</div><div class="body">
+   <p class="ask"><ruby>筋肉<rt>きんにく</rt></ruby>が<ruby>縮<rt>ちぢ</rt></ruby>むとき、<ruby>筋肉<rt>きんにく</rt></ruby>の<ruby>中<rt>なか</rt></ruby>から<ruby>何<rt>なに</rt></ruby>が<ruby>出<rt>で</rt></ruby>ますか。</p>
+  </div></div>
+  <div class="q"><div class="n">3</div><div class="body">
+   <p class="ask"><ruby>筋肉<rt>きんにく</rt></ruby>の<ruby>強<rt>つよ</rt></ruby>さは<ruby>何<rt>なに</rt></ruby>で<ruby>決<rt>き</rt></ruby>まりますか。</p>
+  </div></div>
+  <div class="q"><div class="n">4</div><div class="body">
+   <p class="ask"><ruby>筋肥大<rt>きんひだい</rt></ruby>はどうやって<ruby>起<rt>お</rt></ruby>こりますか。</p>
+  </div></div>
+  <div class="q"><div class="n">5</div><div class="body">
+   <p class="ask"><ruby>遅筋<rt>ちきん</rt></ruby>と<ruby>速筋<rt>そっきん</rt></ruby>のちがいは<ruby>何<rt>なん</rt></ruby>ですか。</p>
+  </div></div>
+  <div class="q"><div class="n">6</div><div class="body">
+   <p class="ask">お<ruby>客様<rt>きゃくさま</rt></ruby>に「<ruby>軽<rt>かる</rt></ruby>い<ruby>重量<rt>じゅうりょう</rt></ruby>を100<ruby>回<rt>かい</rt></ruby>やれば<ruby>筋肉<rt>きんにく</rt></ruby>は<ruby>大<rt>おお</rt></ruby>きくなりますか」と<ruby>聞<rt>き</rt></ruby>かれたら、<ruby>何<rt>なん</rt></ruby>と<ruby>答<rt>こた</rt></ruby>えますか。</p>
+  </div></div>
+ </section>
+
+ <section class="sec">
+  <div class="sec-h">
+   <span class="sn">3</span>
+   <h2><span class="tag">DAY 3</span><span><ruby>運動学<rt>うんどうがく</rt></ruby>の<ruby>基礎<rt>きそ</rt></ruby></span></h2>
+  </div>
+  <div class="q"><div class="n">1</div><div class="body">
+   <p class="ask"><ruby>運動学<rt>うんどうがく</rt></ruby>では、<ruby>筋肉<rt>きんにく</rt></ruby>と<ruby>関節<rt>かんせつ</rt></ruby>のどちらを<ruby>先<rt>さき</rt></ruby>に<ruby>見<rt>み</rt></ruby>ますか。</p>
+  </div></div>
+  <div class="q"><div class="n">2</div><div class="body">
+   <p class="ask"><ruby>面<rt>めん</rt></ruby>は3つあります。<ruby>名前<rt>なまえ</rt></ruby>を<ruby>言<rt>い</rt></ruby>ってください。</p>
+  </div></div>
+  <div class="q"><div class="n">3</div><div class="body">
+   <p class="ask">スクワット・サイドレイズ・ゴルフのスイングは、それぞれ<ruby>何面<rt>なんめん</rt></ruby>の<ruby>運動<rt>うんどう</rt></ruby>ですか。</p>
+  </div></div>
+  <div class="q"><div class="n">4</div><div class="body">
+   <p class="ask"><ruby>主動筋<rt>しゅどうきん</rt></ruby>と<ruby>拮抗筋<rt>きっこうきん</rt></ruby>のちがいは<ruby>何<rt>なん</rt></ruby>ですか。</p>
+  </div></div>
+  <div class="q"><div class="n">5</div><div class="body">
+   <p class="ask">スクワットでしゃがむとき、<ruby>股関節<rt>こかんせつ</rt></ruby>・<ruby>膝<rt>ひざ</rt></ruby>・<ruby>足首<rt>あしくび</rt></ruby>はそれぞれどう<ruby>動<rt>うご</rt></ruby>きますか。</p>
+  </div></div>
+  <div class="q"><div class="n">6</div><div class="body">
+   <p class="ask">お<ruby>客様<rt>きゃくさま</rt></ruby>がKnee-inになりました。<ruby>原因<rt>げんいん</rt></ruby>は<ruby>膝<rt>ひざ</rt></ruby>ですか。どこを<ruby>先<rt>さき</rt></ruby>に<ruby>見<rt>み</rt></ruby>ますか。</p>
+  </div></div>
+ </section>
+</div>
+</body>
+</html>
