@@ -18,7 +18,10 @@
  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
  h1{margin-bottom:30px}
  .q{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:20px 24px;box-shadow:var(--shadow);margin-bottom:14px;display:flex;gap:14px;align-items:flex-start}
- .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+ /* 小問の番号は、セクション番号（.sec-h .sn）と色を変える。同じ色だと
+    どこまでが1つのセクションなのかが分かりにくいため。
+    文字は白ではなく濃い茶色。黄〜オレンジの上に白を置くと薄くて読めないため */
+ .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#3d2200;background:linear-gradient(135deg,#f6a723,#e8860c);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
  .q .body{flex:1}
  .q .body p.ask{font-size:15px;font-weight:700;color:var(--ink);font-style:normal}
  rt{font-size:.55em;font-weight:500}
@@ -35,14 +38,15 @@
  /* 関節の動き 20問。研修担当者が読み上げて、研修生が体で示す。ふりがなは付けない */
  .moves{list-style:none;counter-reset:mv;display:grid;grid-template-columns:1fr;gap:10px}
  .moves li{counter-increment:mv;display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:17px;line-height:1.4}
- .moves li::before{content:counter(mv);font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+ .moves li::before{content:counter(mv);font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#3d2200;background:linear-gradient(135deg,#f6a723,#e8860c);width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
  /* 関節の動き (2) 絵を見て、何の動きかを答える。
     こたえはページに置かない。alt にも書かない —— zoom.js が alt をビューアの見出しに出すので、
     動きの名前を入れると絵を開いた時点で答えが見えてしまう */
  .qimgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
  .qimgs .imgwrap{position:relative;margin:0;background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);line-height:0}
  .qimgs .imgwrap img{display:block;width:100%;height:auto;cursor:zoom-in}
- .qimgs .qn{position:absolute;top:10px;left:10px;z-index:1;font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:28px;height:28px;border-radius:8px;display:grid;place-items:center;line-height:1}
+ /* 絵の上にのせる番号。絵の背景が白いので、影をつけて輪郭を見せる */
+ .qimgs .qn{position:absolute;top:10px;left:10px;z-index:1;font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#3d2200;background:linear-gradient(135deg,#f6a723,#e8860c);width:28px;height:28px;border-radius:8px;display:grid;place-items:center;line-height:1;box-shadow:0 1px 5px rgba(0,0,0,.3)}
  @media(max-width:560px){.qimgs{grid-template-columns:1fr}}
 </style>
 </head>
