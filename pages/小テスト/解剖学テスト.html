@@ -37,6 +37,14 @@
  .moves li{counter-increment:mv;display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:17px;line-height:1.4}
  .moves li::before{content:counter(mv);font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
  @media(max-width:560px){.moves{grid-template-columns:1fr}}
+ /* 関節の動き (2) 絵を見て、何の動きかを答える。
+    こたえはページに置かない。alt にも書かない —— zoom.js が alt をビューアの見出しに出すので、
+    動きの名前を入れると絵を開いた時点で答えが見えてしまう */
+ .qimgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+ .qimgs .imgwrap{position:relative;margin:0;background:var(--card);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);line-height:0}
+ .qimgs .imgwrap img{display:block;width:100%;height:auto;cursor:zoom-in}
+ .qimgs .qn{position:absolute;top:10px;left:10px;z-index:1;font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:28px;height:28px;border-radius:8px;display:grid;place-items:center;line-height:1}
+ @media(max-width:560px){.qimgs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -77,6 +85,25 @@
  <section class="sec">
   <div class="sec-h">
    <span class="sn">2</span>
+   <h2><span class="tag">テスト</span><span><ruby>関節<rt>かんせつ</rt></ruby>の<ruby>動<rt>うご</rt></ruby>き (2)</span></h2>
+  </div>
+  <div class="qimgs">
+   <figure class="imgwrap"><span class="qn">1</span><img src="../../Picture/Picture for test/関節の動き/1.png" alt="関節の動き (2) 問題1"></figure>
+   <figure class="imgwrap"><span class="qn">2</span><img src="../../Picture/Picture for test/関節の動き/2.png" alt="関節の動き (2) 問題2"></figure>
+   <figure class="imgwrap"><span class="qn">3</span><img src="../../Picture/Picture for test/関節の動き/3.png" alt="関節の動き (2) 問題3"></figure>
+   <figure class="imgwrap"><span class="qn">4</span><img src="../../Picture/Picture for test/関節の動き/4.png" alt="関節の動き (2) 問題4"></figure>
+   <figure class="imgwrap"><span class="qn">5</span><img src="../../Picture/Picture for test/関節の動き/5.png" alt="関節の動き (2) 問題5"></figure>
+   <figure class="imgwrap"><span class="qn">6</span><img src="../../Picture/Picture for test/関節の動き/6.png" alt="関節の動き (2) 問題6"></figure>
+   <figure class="imgwrap"><span class="qn">7</span><img src="../../Picture/Picture for test/関節の動き/7.png" alt="関節の動き (2) 問題7"></figure>
+   <figure class="imgwrap"><span class="qn">8</span><img src="../../Picture/Picture for test/関節の動き/8.png" alt="関節の動き (2) 問題8"></figure>
+   <figure class="imgwrap"><span class="qn">9</span><img src="../../Picture/Picture for test/関節の動き/9.png" alt="関節の動き (2) 問題9"></figure>
+   <figure class="imgwrap"><span class="qn">10</span><img src="../../Picture/Picture for test/関節の動き/10.png" alt="関節の動き (2) 問題10"></figure>
+  </div>
+ </section>
+
+ <section class="sec">
+  <div class="sec-h">
+   <span class="sn">3</span>
    <h2><span class="tag">テスト</span><span><ruby>筋肉<rt>きんにく</rt></ruby>の<ruby>位置<rt>いち</rt></ruby>・<ruby>名前<rt>なまえ</rt></ruby></span></h2>
   </div>
   <figure class="hero"><img src="../../Picture/Picture for test/解剖学テスト1.png" alt="解剖学テスト 後面"></figure>
