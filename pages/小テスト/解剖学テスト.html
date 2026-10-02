@@ -33,10 +33,9 @@
  .hero{margin-bottom:24px;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
  .hero img{display:block;width:100%;height:auto}
  /* 関節の動き 20問。研修担当者が読み上げて、研修生が体で示す。ふりがなは付けない */
- .moves{list-style:none;counter-reset:mv;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .moves{list-style:none;counter-reset:mv;display:grid;grid-template-columns:1fr;gap:10px}
  .moves li{counter-increment:mv;display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:17px;line-height:1.4}
  .moves li::before{content:counter(mv);font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
- @media(max-width:560px){.moves{grid-template-columns:1fr}}
  /* 関節の動き (2) 絵を見て、何の動きかを答える。
     こたえはページに置かない。alt にも書かない —— zoom.js が alt をビューアの見出しに出すので、
     動きの名前を入れると絵を開いた時点で答えが見えてしまう */
@@ -60,25 +59,15 @@
   </div>
   <ol class="moves">
    <li>肩甲骨挙上</li>
-   <li>肩甲骨下制</li>
    <li>肩甲骨内転</li>
-   <li>肩甲骨外転</li>
    <li>肩関節屈曲</li>
-   <li>肩関節伸展</li>
    <li>肩関節外転</li>
-   <li>肩関節外旋</li>
    <li>肩関節内旋</li>
-   <li>肩関節水平屈曲</li>
    <li>肘関節屈曲</li>
-   <li>手首屈曲</li>
    <li>手首伸展</li>
-   <li>股関節屈曲</li>
    <li>股関節外転</li>
-   <li>股関節内旋</li>
    <li>膝関節屈曲</li>
-   <li>膝関節伸展</li>
    <li>足関節背屈</li>
-   <li>足関節底屈</li>
   </ol>
  </section>
 
