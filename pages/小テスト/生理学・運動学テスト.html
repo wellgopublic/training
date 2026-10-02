@@ -18,9 +18,10 @@
  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.1}
  h1{margin-bottom:30px}
  .q{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:20px 24px;box-shadow:var(--shadow);margin-bottom:14px;display:flex;gap:14px;align-items:flex-start}
- /* 小問の番号は DAY の番号（.sec-h .sn）より明るい青にする。
-    同じ色だと、どこまでが1つの DAY なのかが分かりにくいため */
- .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#fff;background:linear-gradient(135deg,#3470cf,#1f56b0);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
+ /* 小問の番号は DAY の番号（.sec-h .sn）と色を変える。同じ色だと、
+    どこまでが1つの DAY なのかが分かりにくいため。
+    文字は白ではなく濃い茶色。黄〜オレンジの上に白を置くと薄くて読めないため */
+ .q .n{font-family:"Outfit",sans-serif;font-weight:900;font-size:14px;color:#3d2200;background:linear-gradient(135deg,#f6a723,#e8860c);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
  .q .body{flex:1}
  .q .body p.ask{font-size:15px;font-weight:700;color:var(--ink);font-style:normal}
  rt{font-size:.55em;font-weight:500}
