@@ -26,6 +26,25 @@
  .btn{font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;border-radius:12px;padding:12px 26px;box-shadow:var(--shadow);transition:transform .15s ease}
  .btn:active{transform:translateY(1px)}
  .btn-ghost{background:var(--card);color:var(--a-deep);border:1.5px solid var(--line)}
+ rt{font-size:.55em;font-weight:500}
+ /* 大きな見出し */
+ .sec-h{display:flex;align-items:center;gap:13px;padding-bottom:13px;margin-bottom:18px;border-bottom:2px solid var(--line)}
+ .sec-h h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:21px;line-height:1.35}
+ .sec-h .tag{font-family:"Noto Sans JP",sans-serif;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));border-radius:999px;padding:3px 13px;line-height:1.6;flex:none}
+ .lead{font-size:15px;font-weight:700;margin-bottom:16px}
+ /* お客様の設定 */
+ .case{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 22px;box-shadow:var(--shadow);margin-bottom:26px}
+ .case .who{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;margin-bottom:2px}
+ .case .info{font-size:15px;font-weight:500}
+ /* ①〜⑥ の流れ。カードとカードの間に ↓ を出す。
+    li は flex なので、文字は span 1つにまとめること。
+    ばらばらに置くと、ふりがなごとに間があいてしまう */
+ .flow{list-style:none;margin:0;padding:0}
+ .flow li{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:13px;font-size:15px;font-weight:700}
+ .flow li .fn{font-family:"Outfit",sans-serif;font-weight:900;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--a),var(--a-deep));width:29px;height:29px;border-radius:9px;display:grid;place-items:center;flex:none}
+ .flow li+li{margin-top:34px;position:relative}
+ .flow li+li::before{content:"↓";position:absolute;left:0;right:0;top:-29px;text-align:center;font-size:17px;font-weight:900;color:rgba(0, 74, 173, .42);line-height:1}
+ .outro{margin-top:26px;background:var(--a-soft);border:1.5px dashed var(--line);border-radius:14px;padding:15px;text-align:center;font-size:15px;font-weight:700}
 </style>
 </head>
 <body>
@@ -34,11 +53,28 @@
  <div class="kicker">生理学・運動学 ／ プログラム作成</div>
  <h1>プログラム作成<span class="badge">小テスト</span></h1>
 
- <div class="q"><div class="n">1</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">2</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">3</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">4</div><div class="body"><p>設問をここに記載します。</p></div></div>
- <div class="q"><div class="n">5</div><div class="body"><p>設問をここに記載します。</p></div></div>
+ <div class="sec-h">
+  <span class="tag">テスト</span>
+  <h2><ruby>最終試験<rt>さいしゅうしけん</rt></ruby></h2>
+ </div>
+
+ <p class="lead">ペアになります。</p>
+
+ <div class="case">
+  <div class="who">Aさん</div>
+  <div class="info">40<ruby>歳<rt>さい</rt></ruby>、<ruby>女性<rt>じょせい</rt></ruby>、<ruby>肩<rt>かた</rt></ruby>こり、<ruby>運動初心者<rt>うんどうしょしんしゃ</rt></ruby></div>
+ </div>
+
+ <ol class="flow">
+  <li><span class="fn">①</span><span>カウンセリング</span></li>
+  <li><span class="fn">②</span><span><ruby>姿勢評価<rt>しせいひょうか</rt></ruby></span></li>
+  <li><span class="fn">③</span><span>スクワット<ruby>評価<rt>ひょうか</rt></ruby></span></li>
+  <li><span class="fn">④</span><span><ruby>原因<rt>げんいん</rt></ruby>を<ruby>説明<rt>せつめい</rt></ruby></span></li>
+  <li><span class="fn">⑤</span><span>60<ruby>分<rt>ぷん</rt></ruby>プログラム<ruby>作成<rt>さくせい</rt></ruby></span></li>
+  <li><span class="fn">⑥</span><span><ruby>実際<rt>じっさい</rt></ruby>に<ruby>指導<rt>しどう</rt></ruby></span></li>
+ </ol>
+
+ <p class="outro">これを<ruby>発表<rt>はっぴょう</rt></ruby>します。</p>
 </div>
 </body>
 </html>
